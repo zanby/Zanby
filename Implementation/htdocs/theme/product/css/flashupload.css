@@ -1,0 +1,118 @@
+.likeParent {
+	font: inherit;
+	color: inherit;
+	text-decoration: inherit;
+}
+a.likeParent,
+a.likeParent:link,
+a.likeParent:active,
+a.likeParent:visited,
+a.likeParent:hover 
+{
+	font: inherit;	
+}
+div.title 
+{
+	width: auto;	
+	background-color: #99bbe8;
+	border-bottom: solid 1px #000000;
+	padding: 2px;
+	margin-bottom: 15px;	
+	color: #000000;
+	text-decoration: none;
+}
+/*
+div.content 
+{
+	margin: 10px;
+}*/
+legend 
+{
+	font-size: 0.9em;
+	font-weight: bold;
+	color: Black;
+}
+.progressContainer {
+	border-bottom: solid 1px #cdd3d5;
+	background-color: #f7f7f7;
+}
+.red /* Error */
+{
+	border: solid 1px #9a1100;
+	background-color: #ffebeb;
+}
+/*.green  Current  
+{
+	border: solid 1px #ddf0dd;
+	background-color: #ebffeb;
+}*/
+/*.blue  Complete 
+{
+	border: solid 1px #cee2f2;
+	background-color: #f0f5ff;
+}*/
+.progressName {
+padding:6px;
+width:295px;
+overflow:hidden;  
+}
+.progressBarInProgress,
+.progressBarComplete,
+.progressBarError {
+	font-size: 0px;
+	width: 0%;
+	height: 2px;
+	background-color: blue;
+	margin-top: 2px;
+}
+.progressBarComplete {
+	width: 100%;
+	background-color: green;
+	visibility: hidden;
+}
+.progressBarError {
+	width: 100%;
+	background-color: red;
+	visibility: hidden;
+}
+.progressBarStatus {
+	clear:both;
+	margin-top: 2px;
+	width: 337px;
+	font-size: 7pt;
+	font-family: Verdana;
+	text-align: left;
+	white-space: nowrap;
+	padding-left:6px;
+}
+a.progressCancel,
+a.progressCancel:link,
+a.progressCancel:active,
+a.progressCancel:visited,
+a.progressCancel:hover
+{
+	font-size: 0px;
+	display: inline;
+	height: 14px;
+	width: 14px;
+	background-image: url(/theme/product/images/decorators/close.gif);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	position:absolute;
+	right:5px;
+	top:8px;
+	left:330px;
+}
+.progressDetector {
+	background-color: #c74d14 !important;
+	//overflow: hidden;	
+}
+.progressDetector-inner {
+	width: 100% !important;
+	position: relative;	
+}
+
+.fuFix {
+    // filter: alpha(opacity=0);
+    // position: absolute;
+}

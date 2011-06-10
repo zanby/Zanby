@@ -1,0 +1,1 @@
+{include file="content_objects/ddMyPhotos/preview_mode_wide.tpl"}

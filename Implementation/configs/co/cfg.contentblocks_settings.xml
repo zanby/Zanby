@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding='utf-8'?>
+<config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+    <production>
+        <ddMogulus>
+            <defaultChannel></defaultChannel>
+        </ddMogulus>
+    </production>
+    <staging extends="production"></staging>
+    <amazon extends="production"></amazon>
+    <development extends="staging"></development>
+
+    <!-- Developers section -->
+    <gabrusenok extends="development"></gabrusenok>
+    <pavel_shutin extends="development"></pavel_shutin>
+    <kamenka_local extends="development"></kamenka_local>
+</config>

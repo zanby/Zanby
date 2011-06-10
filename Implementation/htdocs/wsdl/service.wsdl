@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" name="Service" targetNamespace="http://celebrationdonation.org/soap/mailserver" xmlns:tns="http://celebrationdonation.org/soap/mailserver" xmlns:impl="http://celebrationdonation.org/soap/mailserver" xmlns:xsd1="http://celebrationdonation.org/soap/mailserver" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <portType name="ServicePortType">
+    <operation name="callbackAddPMBMessage" parameterOrder="campaignUID params">
+      <input message="tns:CallbackAddPMBMessageRequest"/>
+      <output message="tns:CallbackAddPMBMessageResponse"/>
+    </operation>
+  </portType>
+  <binding name="ServiceBinding" type="tns:ServicePortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="callbackAddPMBMessage">
+      <soap:operation soapAction="urn:Service#ServiceServer#callbackAddPMBMessage"/>
+      <input>
+        <soap:body parts="campaignUID params" use="encoded" namespace="http://celebrationdonation.org/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://celebrationdonation.org/soap/mailserver" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <message name="CallbackAddPMBMessageRequest">
+    <part name="campaignUID" type="xsd:string"/>
+    <part name="params" type="xsd:array"/>
+  </message>
+  <message name="CallbackAddPMBMessageResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <service name="ServiceService">
+    <port name="ServicePort" binding="tns:ServiceBinding">
+      <soap:address location="http://cd.sukharev.buick/soap.mailsrv.callback.service.php"/>
+    </port>
+  </service>
+</definitions>

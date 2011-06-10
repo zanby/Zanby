@@ -1,0 +1,16 @@
+@import url(/theme/product/css/dnd.css);
+.prTheme-bgexample {
+background:#FFFFFF url(/theme/product_ei/images/decorators/background/bkgThemeBg.gif) no-repeat scroll 0 0;
+height:351px;
+width:351px;
+}
+.prTheme-bgexample-inner {
+     position: relative;
+     top: 78px;
+     left: 70px;
+     width: 262px;
+     height: 255px;
+}
+.prCO-headline .prCOHeaderButtons a {
+	/*background-color:#666;*/
+}

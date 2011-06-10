@@ -1,0 +1,201 @@
+/***** Global Settings *****/
+
+html{
+font:100.1%;
+} 
+ 
+html, body {
+border:0;
+margin:0;
+padding:0;
+}
+ 
+body {
+font:82%/1.25 Arial, Helvetica, sans-serif;
+}
+ 
+*html table {
+font:100%/1.25 Arial, Helvetica, sans-serif;
+} 
+/***** Headings *****/
+ 
+h1, h2, h3, h4, h5, h6 {
+margin:0;
+padding:0;
+font-weight:normal;
+}
+ 
+h1 {
+padding:10px 0;
+font-size:2.29em;
+}
+ 
+h2 {
+padding:10px 0;
+font-size:1.5em;
+}
+ 
+h3 {
+padding:10px 0;
+font-size:1em;
+font-weight:bold;
+}
+h3.prInnerTopLarge {
+padding-top: 25px !important;
+}
+ 
+h4 {
+padding:10px 0;
+font-size:1em;
+font-weight:bold;
+}
+
+h4.prNoInnerTop {
+padding-top: 0px !important;
+}
+
+h4.prInnerTopLarge {
+padding-top: 25px !important;
+}
+ 
+/***** Common Formatting *****/
+ 
+p {
+
+}
+ 
+ul {
+	list-style: none;
+}
+ 
+blockquote {
+margin:1.25em;
+padding:1.25em 1.25em 0 1.25em;
+}
+ 
+small {
+font-size:0.8em;
+}
+ 
+fieldset, img {
+border:0;
+}
+ 
+sup {
+position:relative;
+bottom:0.3em;
+vertical-align:baseline;
+}
+ 
+sub {
+position:relative;
+bottom:-0.2em;
+vertical-align:baseline;
+}
+ 
+acronym, abbr {
+cursor:help;
+letter-spacing:1px;
+border-bottom:1px dashed;
+}
+
+/***** Forms *****/
+ 
+form {
+margin:0;
+padding:0;
+display:inline;
+}
+ 
+input, select, textarea {
+font:1em Arial, Helvetica, sans-serif;
+}
+ 
+textarea {
+width:100%;
+line-height:1.25;
+}
+ 
+label {
+cursor:pointer;
+font-weight:bold;
+}
+ 
+/***** Tables *****/
+ 
+table {
+border:0;
+margin:0;
+padding:0;
+}
+ 
+table tr td {
+padding:2px;
+}
+ 
+/***** Global Classes *****/
+
+.prBlock {display: block;}
+.prInline {display: inline;}
+.prBlockCentered {margin: 0 auto}
+.prNone {display: none;}
+.prZeroFont {font-size: 0em;}
+.prFloatLeft {
+	display: inline;
+	float: left;
+}
+.prFloatRight {
+	display: inline;
+	float: right;
+}
+.prClr {
+	overflow: hidden;
+	height: 1%;
+}
+.prClr2 {
+	overflow: hidden;
+}
+.prClr3 {
+	overflow: hidden;
+	zoom: 1;
+}
+.prClearer {clear: both;}
+.prClearer2 {
+	clear: both;
+	zoom: 1;
+}
+.prScroll {overflow: auto !important;}
+.prTLeft {text-align: left !important;}
+.prTRight {text-align: right !important;}
+.prTCenter {text-align: center !important;}
+.prTJustify {text-align:justify !important;}
+.prVTop {vertical-align: top !important;}
+.prVMiddle {vertical-align: middle !important;}
+.prVBottom {vertical-align: bottom !important;}
+
+.prTBold {font-weight:bold;}
+.prTNormal {font-weight:normal;}
+
+.prTList {margin-left: 20px; list-style: outside;}
+ul.prTList {list-style: disc !important;}
+.prTList li {margin-top: 5px;}
+ol.prTList {list-style: decimal !important;}
+
+.prNoBorder {border:0px!important;}
+.prGrayBorder {border: 1px solid #808080;}
+.prBorderBottom {border-bottom: 1px solid #808080;}
+
+.prNoPadding {
+	padding: 0 !important;
+}
+.prNoVPadding {
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+.prNoHPadding {
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+}
+.prNoMargin {margin: 0 !important;}
+
+.nobullet      {list-style:none;list-style-image:none;}

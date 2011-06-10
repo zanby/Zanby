@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+	<head>
+	
+	</head>
+	<body>
+		<!--
+		<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US" type="text/javascript"></script>
+		<fb:login-button></fb:login-button>
+		<script type="text/javascript">  FB.init("cc8183ad998bdabc348447d33821bda9", "xd_receiver.htm"); </script>
+		-->
+		
+		<!-- Text area to display tracing information to the Web page. 
+		If you use Firebug or Safari debug console, these tracings will go to the JavaScript console as well. --> 
+		<textarea style="width: 1000px; height: 300px;" id="_traceTextBox"> </textarea> 
+		<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script> 
+		<script type="text/javascript"> 
+		//<![CDATA[ 
+			var api_key = 'cc8183ad998bdabc348447d33821bda9'; 
+			var channel_path = 'xd_receiver.htm'; 
+			FB_RequireFeatures(["Api"], function(){ 
+				// Create an ApiClient object, passing app's API key and 
+				// a site relative URL to xd_receiver.htm 
+				FB.Facebook.init(api_key, channel_path); 
+				var api = FB.Facebook.apiClient; 
+				
+				// require user to login 
+				api.requireLogin(function(exception){ 
+				
+					FB.FBDebug.logLevel = 1; 
+					FB.FBDebug.dump("Current user id is " + api.get_session().uid); 
+
+					/// Example of calling APIs in batched mode 
+					//First create a sequencer for batch execution 
+					var sequencer = new FB.BatchSequencer(); 
+					
+					// By default, individual APIs may be executed in parallel on the server side. 
+					// To force sequencial executions on the server, uncomment the following code 
+					// sequencer.isParallel = false; 
+					
+					//Calling friends_get API, passing the sequencer as last argument 
+					var pendingFriendsResult = api.friends_get(null, sequencer); 
+					
+					// 
+					
+					//Call notifications_get API, passing the sequencer as last argument 
+					var pendingNotificationsResult = api.notifications_get(sequencer); 
+					
+					//Actually execute the API that is queued inside the sequencer, passing a callback function that is called 
+					//when the batch operation is completed. When the callback function is called, the 'result' or 'exception' properties of 
+					//pendingFriendsResult and pendingNotificationsResult are updated. 
+					
+					sequencer.execute(function() { 
+						FB.FBDebug.dump(pendingFriendsResult.result, 'friendsResult from batch execution'); 
+						FB.FBDebug.dump(pendingNotificationsResult.result, 'notificationsResult from batch execution'); 
+					});
+				
+					FB.Connect.showPermissionDialog("email", function(x){alert(x);}, true, [1234,2345]);
+				}); 
+			}); 
+		//]]> 
+		</script>
+	</body>
+</html>

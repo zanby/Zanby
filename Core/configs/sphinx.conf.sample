@@ -1,0 +1,1385 @@
+#### WARING ### ACHTUNG ### WARNING ### ACHTUNG ### WARNING ### ACHTUNG #####
+# This is a sample config file for Sphinx for Zanby DB indexing.
+# All index paths are dummy: replace /my/dir string
+# with your real storage directory (e.g. /var/db/sphinx or something).
+# Also MySQL connection parameters are dummy as well.
+# Put real values into sql_host, sql_user, sql_pass & sql_db.
+#
+# <Turned off - not actual>
+# Also note: when using this file Sphinx's indexer will issue error
+# ERROR: index 'indextpl': no valid sources configured; skipping.
+# and Sphinx's searchd issues warning on start up
+# WARNING: index 'indextpl': preload: failed to open
+# .../dummy.sph: No such file or directory; NOT SERVING
+#
+# Otherwise indexing process runs smoothly and searchd works without
+# errors. So just ignore these messages.
+#
+# indextpl is not a real index, but "index template" with common
+# options for all other indexes. It's created to avoid copy-pasting
+# a lot of options and make support of this config easier.
+#
+# If this is an issue for you, copy-paste code from indextpl
+# into all other indexes config sections, remove indextpl declaration
+# and remove ": indextpl" clause from all index declarations.
+# </Turned off - not actual>
+#############################################################################
+
+#############################################################################
+## data source definition
+#############################################################################
+
+# Sources {{{
+source appdb
+{
+type          = mysql
+
+    sql_host      = host
+    sql_user      = user
+    sql_pass      = password
+    sql_db        = database
+    sql_port      = 3306    # optional, default is 3306
+
+    sql_query_pre = SET NAMES utf8;
+}
+
+# source tags {{{
+source tagstpl : appdb
+{
+    sql_attr_uint        = tag_id
+    sql_attr_uint        = entity_id
+    sql_attr_uint        = entity_type
+    sql_attr_uint        = entity_type_name
+    sql_attr_uint        = city_id
+    sql_attr_uint        = state_id
+    sql_attr_uint        = country_id
+    sql_attr_uint        = owner_type
+    sql_attr_uint        = owner_id
+    sql_attr_uint        = creator_id
+    sql_attr_uint        = status
+    sql_attr_timestamp   = creation_date
+    sql_attr_uint        = main_group_uid
+
+    sql_attr_float       = latitude
+    sql_attr_float       = longitude
+
+    sql_attr_multi       = uint members from field members
+
+    sql_attr_str2ordinal = name_bin
+
+    sql_ranged_throttle  = 0
+}
+
+source eventtagssrc : tagstpl
+{
+    sql_query = select id, name, name as name_bin, tag_id, status, entity_type, crc32(entity_type_name) as entity_type_name, entity_id, \
+                    city_id, state_id, country_id, longitude, latitude, \
+                    owner_type, owner_id, creator_id, unix_timestamp(creation_date) as creation_date, crc32(main_group_uid) as main_group_uid, \
+                    members \
+                from view_tags__events_search;
+}
+
+source venuetagssrc : tagstpl
+{
+    sql_query = select id, name, name as name_bin, tag_id, status, entity_type, crc32(entity_type_name) as entity_type_name, entity_id, \
+                    city_id, state_id, country_id, longitude, latitude, \
+                    owner_type, owner_id, creator_id, unix_timestamp(creation_date) as creation_date, crc32(main_group_uid) as main_group_uid,\
+                    members \
+                from view_tags__event_venues_search;
+}
+
+source usertagssrc : tagstpl
+{
+    sql_query = select id, name, name as name_bin, tag_id, status, entity_type, crc32(entity_type_name) as entity_type_name, entity_id, \
+                    city_id, state_id, country_id, longitude, latitude, \
+                    owner_type, owner_id, creator_id, unix_timestamp(creation_date) as creation_date, crc32(main_group_uid) as main_group_uid,\
+                    members \
+                from view_tags__users_search where private=0;
+}
+
+source grouptagssrc : tagstpl
+{
+    sql_query = select id, name, name as name_bin, tag_id, status, entity_type, crc32(entity_type_name) as entity_type_name, entity_id, \
+                    city_id, state_id, country_id, longitude, latitude, \
+                    owner_type, owner_id, creator_id, unix_timestamp(creation_date) as creation_date, crc32(main_group_uid) as main_group_uid,\
+                    members \
+                from view_tags__groups_search;
+}
+
+source gallerytagssrc : tagstpl
+{
+    sql_query = select id, name, name as name_bin, tag_id, status, entity_type, crc32(entity_type_name) as entity_type_name, entity_id, \
+                    city_id, state_id, country_id, longitude, latitude, \
+                    owner_type, owner_id, creator_id, unix_timestamp(creation_date) as creation_date, crc32(main_group_uid) as main_group_uid,\
+                    members \
+                from view_tags__galleries_search;
+}
+
+source phototagssrc : tagstpl
+{
+    sql_query = select id, name, name as name_bin, tag_id, status, entity_type, crc32(entity_type_name) as entity_type_name, entity_id, \
+                    city_id, state_id, country_id, longitude, latitude, \
+                    owner_type, owner_id, creator_id, unix_timestamp(creation_date) as creation_date, crc32(main_group_uid) as main_group_uid,\
+                    members \
+                from view_tags__photos_search;
+}
+
+source documenttagssrc : tagstpl
+{
+    sql_query = select id, name, name as name_bin, tag_id, status, entity_type, crc32(entity_type_name) as entity_type_name, entity_id, \
+                    city_id, state_id, country_id, longitude, latitude, \
+                    owner_type, owner_id, creator_id, unix_timestamp(creation_date) as creation_date, crc32(main_group_uid) as main_group_uid,\
+                    members \
+                from view_tags__documents_search;
+}
+
+source listtagssrc : tagstpl
+{
+    sql_query = select id, name, name as name_bin, tag_id, status, entity_type, crc32(entity_type_name) as entity_type_name, entity_id, \
+                    city_id, state_id, country_id, longitude, latitude, \
+                    owner_type, owner_id, creator_id, unix_timestamp(creation_date) as creation_date, crc32(main_group_uid) as main_group_uid,\
+                    members \
+                from view_tags__lists_search;
+}
+
+source listrecordtagssrc : tagstpl
+{
+    sql_query = select id, name, name as name_bin, tag_id, status, entity_type, crc32(entity_type_name) as entity_type_name, entity_id, \
+                    city_id, state_id, country_id, longitude, latitude, \
+                    owner_type, owner_id, creator_id, unix_timestamp(creation_date) as creation_date, crc32(main_group_uid) as main_group_uid,\
+                    members \
+                from view_tags__list_records_search;
+}
+
+source videogallerytagssrc : tagstpl
+{
+    sql_query = select id, name, name as name_bin, tag_id, status, entity_type, crc32(entity_type_name) as entity_type_name, entity_id, \
+                    city_id, state_id, country_id, longitude, latitude, \
+                    owner_type, owner_id, creator_id, unix_timestamp(creation_date) as creation_date, crc32(main_group_uid) as main_group_uid, \
+                    members \
+                from view_tags__video_galleries_search;
+}
+
+source videotagssrc : tagstpl
+{
+    sql_query = select id, name, name as name_bin, tag_id, status, entity_type, crc32(entity_type_name) as entity_type_name, entity_id, \
+                    city_id, state_id, country_id, longitude, latitude, \
+                    owner_type, owner_id, creator_id, unix_timestamp(creation_date) as creation_date, crc32(main_group_uid) as main_group_uid, \
+                    members \
+                from view_tags__videos_search;
+}
+# }}}
+
+source globalsearch : appdb
+{
+
+}
+
+
+#source group {{{
+source grouptpl : globalsearch
+{
+    sql_attr_uint        = entity_id
+    sql_attr_uint        = country_id
+    sql_attr_uint        = category_id
+    sql_attr_uint        = state_id
+    sql_attr_uint        = city_id
+    sql_attr_uint        = age
+    sql_attr_uint        = gender
+    sql_attr_uint        = list_type_id
+    sql_attr_uint        = private
+    sql_attr_uint        = main_group_uid
+    sql_attr_uint		 = owner_user_id
+
+    sql_attr_float       = latitude
+    sql_attr_float       = longitude
+    sql_attr_timestamp   = creation_date
+
+    sql_attr_uint        = member_count
+    sql_attr_uint        = zipcode_bin
+    sql_attr_uint        = type
+    sql_attr_str2ordinal = name
+
+    sql_ranged_throttle  = 0
+}
+
+## TODO ## 1. maybe we should move "type in ('simple')" into view?
+##         2. maybe we should move replacement of '-' with space into sphinx (charset)?
+source groupssrc : grouptpl
+{
+    sql_query = select id, \
+                        city_id, \
+                        state_id, \
+                        country_id, \
+                        age, \
+                        gender, \
+                        list_type_id, \
+                        category_id, \
+                        private, \
+                        crc32(main_group_uid) as main_group_uid, latitude, \
+                        longitude, \
+                        creation_date, \
+                        name, \
+                        replace(name, '-', ' ') as name_str, \
+                        headline, \
+                        description, \
+                        type+0 as type, \
+                        members_name, \
+                        zipcode, \
+                        crc32(zipcode) as zipcode_bin, \
+                        member_count, \
+                        tag, \
+                        '2' as entity_id, \
+                        owner_user_id \
+                from \
+                    view_groups__search \
+                where \
+                    private = 0 and type in ('simple','family');
+
+}
+#source groupssrcmod : grouptpl
+#{
+#    sql_query_pre  = SET NAMES utf8;
+#    sql_query_pre  = start transaction;
+#    sql_query      = \
+#            select id, name, replace(name, '-', ' ') as name_str, headline, description, type+0 as type, members_name, zipcode, crc32(zipcode)# as zipcode_bin, city_id, \
+#        state_id, country_id, latitude, longitude, creation_date, member_count, category_id, \
+#        private,tag,users_names,lists_titles,lists_record_titles,gallery_titles,photo_titles,users_tags, crc32(main_group_uid) as #main_group_uid, '2' as entity_id \
+#    from view_groups__search_modified vgs where private = 0 and type in ('simple','family');
+#    sql_query_post = delete from zanby_entity__changes where entity_type = 2 and is_deleted = 0;
+#    sql_query_post = commit;
+#}
+#source groupssrcrem : grouptpl
+#{
+#    sql_query_pre  = SET NAMES utf8;
+#    sql_query_pre  = start transaction;
+#    sql_query      = select id, name, name as name_str, headline, description, type+0 as type, members_name, zipcode, zipcode as zipcode_bin, city_id, \
+#        state_id, country_id, latitude, longitude, creation_date, member_count, category_id, \
+#        private,tag,users_names,lists_titles,lists_record_titles,gallery_titles,photo_titles,users_tags, crc32(main_group_uid) as main_group_uid, '2' as entity_id \
+#        from view_groups__search_removed vgs;
+#    sql_query_post = delete from zanby_entity__changes where entity_type = 2 and is_deleted = 1;
+#    sql_query_post = commit;
+#}
+# }}}
+
+# source user {{{
+source usertpl : globalsearch
+{
+
+    sql_attr_uint        = entity_id
+    sql_attr_uint        = country_id
+    #sql_attr_uint        = category_id
+    sql_attr_multi       = uint category_id from field category_id
+    sql_attr_uint        = state_id
+    sql_attr_uint        = city_id
+    sql_attr_uint        = age
+    sql_attr_uint        = gender
+    sql_attr_uint        = list_type_id
+    sql_attr_uint        = private
+    sql_attr_uint        = main_group_uid
+    sql_attr_uint		 = owner_user_id
+
+    sql_attr_float       = latitude
+    sql_attr_float       = longitude
+    sql_attr_timestamp   = creation_date
+
+    sql_attr_uint            = birthday_private
+    sql_attr_uint            = photo_only
+    sql_attr_uint            = gender_private
+    sql_attr_str2ordinal    = login
+
+    sql_attr_multi            = uint category_list from field category_list
+
+    sql_attr_timestamp        = register_date
+
+    sql_ranged_throttle    = 0
+
+}
+
+source userssrc : usertpl
+{
+    sql_query            = \
+                      select vus.id, \
+                        city_id, \
+                        state_id, \
+                        country_id, \
+                        age, \
+                        gender, \
+                        list_type_id, \
+                        vus.category_list as category_id, \
+                        private,\
+                        crc32(main_group_uid) as main_group_uid, \
+                        latitude, \
+                        longitude, \
+                        creation_date, \
+                          vus.login, \
+                          vus.login as login_str, \
+                          vus.realname, \
+                          vus.firstname, \
+                          vus.lastname, \
+                          vus.gender_private, \
+                          vus.birthday_private, \
+                          vus.register_date, \
+                          vus.zipcode, \
+                          vus.users_locations_names, \
+                          vus.tag, \
+                          vus.photo_only, \
+                          vus.category_list, \
+                          '1' as entity_id, \
+                         owner_user_id \
+                      from \
+                          view_users__search as vus \
+                      where \
+                            private = 0;
+}
+#source userssrcmod : usertpl
+#{
+#    sql_query_pre        = SET NAMES utf8;
+#    sql_query_pre        = start transaction;
+#    sql_query            = \
+#                      select vus.id, vus.login, vus.login as login_str, vus.realname, vus.firstname, vus.lastname, vus.gender, vus.gender_private, vus.latitude, vus.longitude, vus.age, vus.birthday_private, vus.register_date, vus.zipcode, vus.city_id, vus.state_id, vus.country_id, vus.users_locations_names, vus.tag, vus.photo_only, vus.category_list, vus.group_description, vus.lists_titles, vus.lists_record_titles, vus.gallery_titles, vus.photo_titles, crc32(main_group_uid) as main_group_uid, '1' as entity_id from view_users__search_modified as vus;
+#    sql_query_post        = delete from zanby_entity__changes where entity_type = 1 and is_deleted = 0;
+#    sql_query_post        = commit;
+#
+#}
+#source userssrcrem : usertpl
+#{
+#    sql_query_pre        = SET NAMES utf8;
+#    sql_query_pre        = start transaction;
+#    sql_query            = \
+#                      select vus.id, vus.login, vus.login as login_str, vus.realname, vus.firstname, vus.lastname, vus.gender, vus.gender_private, vus.latitude, vus.longitude, vus.age, vus.birthday_private, vus.register_date, vus.zipcode, vus.city_id, vus.state_id, vus.country_id, vus.users_locations_names, vus.tag, vus.photo_only, vus.category_list, vus.group_description, vus.lists_titles, vus.lists_record_titles, vus.gallery_titles, vus.photo_titles, crc32(main_group_uid) as main_group_uid, '1' as entity_id from view_users__search_removed as vus;
+#    sql_query_post        = delete from zanby_entity__changes where entity_type = 1 and is_deleted = 1;
+#    sql_query_post        = commit;
+#}
+# }}}
+
+# source addressbook {{{
+source addressbooksrc : appdb
+{
+    sql_attr_uint        = entity_id
+    sql_attr_uint        = city_id
+    sql_attr_uint        = birthday_private
+    sql_attr_uint        = age
+    sql_attr_uint        = gender
+    sql_attr_uint        = gender_private
+    sql_attr_str2ordinal = login
+
+    sql_attr_multi       = uint owner_id from field owner_id
+    sql_attr_multi       = uint is_friend from field is_friend
+
+    sql_attr_timestamp   = register_date
+
+    sql_attr_float       = latitude
+    sql_attr_float       = longitude
+
+    sql_ranged_throttle  = 0
+
+    sql_query            = \
+        select vas.id, vas.login, vas.login as login_str, vas.realname, \
+               vas.firstname, vas.lastname, vas.gender, vas.gender_private, \
+               vas.latitude, vas.longitude, vas.age, vas.birthday_private, \
+               vas.register_date, vas.zipcode, vas.city_id, \
+               group_concat(vas.owner_id separator ' ') as owner_id, \
+               group_concat(vas.is_friend separator ' ') as is_friend, \
+               vas.intro, vas.headline, vas.email, vas.path, '1' as entity_id \
+        from view_addressbook__search as vas \
+        group by vas.id;
+}
+# }}}
+
+# source photo {{{
+source phototpl : globalsearch
+{
+
+    sql_attr_uint        = entity_id
+    sql_attr_uint        = country_id
+    sql_attr_uint        = category_id
+    sql_attr_uint        = state_id
+    sql_attr_uint        = city_id
+    sql_attr_uint        = age
+    sql_attr_uint        = gender
+    sql_attr_uint        = list_type_id
+    sql_attr_uint        = private
+    sql_attr_uint        = main_group_uid
+    sql_attr_uint		 = owner_user_id
+
+    sql_attr_float       = latitude
+    sql_attr_float       = longitude
+    sql_attr_timestamp   = creation_date
+
+    sql_attr_uint        = gallery_private
+    sql_attr_uint        = group_private
+    sql_attr_str2ordinal = photo_title
+    sql_attr_uint        = photo_id
+}
+
+source photossrc : phototpl
+{
+    sql_query = \
+                      select \
+                          id, \
+                          city_id, \
+                          state_id, \
+                          country_id, \
+                          age, \
+                          gender, \
+                          list_type_id, \
+                          category_id, \
+                          private,\
+                          crc32(main_group_uid) as main_group_uid, \
+                          latitude, \
+                          longitude, \
+                          creation_date, \
+                          photo_id, \
+                          owner_type, \
+                          owner_id, \
+                          photo_title, \
+                          photo_title_real, \
+                          photo_description, \
+                          photo_additional_info, \
+                          photo_tags, \
+                          gallery_id, \
+                          gallery_title, \
+                          gallery_private, \
+                          gallery_iscreated, \
+                          gallery_description, \
+                          group_private, \
+                          '4' as entity_id, \
+                          owner_user_id \
+                      from \
+                            view_photos__search \
+                      where \
+                            group_private=0 and \
+                            gallery_private=0;
+}
+#source photossrcmod : phototpl
+#{
+#    sql_query_pre  = SET NAMES utf8;
+#    sql_query_pre  = start transaction;
+#    sql_query      = \
+#                      select id, photo_id, owner_type, 0 AS city_id, 0 AS longitude, 0 AS latitude, 0 AS state_id, owner_id, photo_title, photo_title_real, photo_description, photo_additional_info, photo_tags, gallery_id, gallery_title, gallery_private, gallery_iscreated, gallery_description, group_private, city_id, country_id, creation_date, crc32(main_group_uid) as main_group_uid, '4' as entity_id from view_photos__search_modified where group_private=0 and gallery_private=0;
+#    sql_query_post = delete from zanby_entity__changes where entity_type = 4 and is_deleted = 0;
+#    sql_query_post = commit;
+#}
+#source photossrcrem : phototpl
+#{
+#    sql_query_pre  = SET NAMES utf8;
+#    sql_query_pre  = start transaction;
+#    sql_query      = \
+#                      select id, photo_id, owner_type, 0 AS city_id, 0 AS longitude, 0 AS latitude, 0 AS state_id, owner_id, photo_title, photo_title_real, photo_description, photo_additional_info, photo_tags, gallery_id, gallery_title, gallery_private, gallery_iscreated, gallery_description, group_private, city_id, country_id, creation_date, crc32(main_group_uid) as main_group_uid, '4' as entity_id from view_photos__search_removed;
+#    sql_query_post = delete from zanby_entity__changes where entity_type = 4 and is_deleted = 1;
+#    sql_query_post = commit;
+#}
+# }}}
+
+# source video {{{
+source videotpl : globalsearch
+{
+
+    sql_attr_uint        = entity_id
+    sql_attr_uint        = country_id
+    sql_attr_uint        = category_id
+    sql_attr_uint        = state_id
+    sql_attr_uint        = city_id
+    sql_attr_uint        = age
+    sql_attr_uint        = gender
+    sql_attr_uint        = list_type_id
+    sql_attr_uint        = private
+    sql_attr_uint        = main_group_uid
+    sql_attr_uint		 = owner_user_id
+
+    sql_attr_float       = latitude
+    sql_attr_float       = longitude
+    sql_attr_timestamp   = creation_date
+
+    sql_attr_uint            = gallery_private
+    sql_attr_uint            = video_id
+    sql_attr_str2ordinal    = video_title
+}
+
+source videossrc : videotpl
+{
+    sql_query            = \
+                      select \
+                          id, \
+                          city_id, \
+                          state_id, \
+                          country_id, \
+                          age, \
+                          gender, \
+                          list_type_id, \
+                          category_id, \
+                          private,\
+                          crc32(main_group_uid) as main_group_uid, \
+                          latitude, \
+                          longitude, \
+                          creation_date, \
+                          video_id, \
+                          owner_type, \
+                          owner_id, \
+                          video_title, \
+                          video_title_real, \
+                          video_description, \
+                          video_additional_info, \
+                          video_tags, \
+                          gallery_id, \
+                          gallery_title, \
+                          gallery_private, \
+                          gallery_iscreated, \
+                          gallery_description, \
+                          group_private, \
+                          '37' as entity_id, \
+                          owner_user_id \
+                      from \
+                          view_videos__search \
+                      where \
+                          group_private=0 and \
+                          gallery_private=0;
+}
+#source videossrcmod : videotpl
+#{
+#    sql_query_pre        = SET NAMES utf8;
+#    sql_query_pre        = start transaction;
+#    sql_query            = \
+#                      select id, video_id, 0 AS latitude, 0 AS longitude, 0 AS  owner_type, owner_id, video_title, video_title_real, video_description, video_additional_info, video_tags, gallery_id, gallery_title, gallery_private, gallery_iscreated, gallery_description, group_private, city_id, 0 AS state_id, country_id, creation_date, crc32(main_group_uid) as main_group_uid, '37' as entity_id from view_videos__search_modified where group_private=0 and gallery_private=0;
+#    sql_query_post        = delete from zanby_entity__changes where entity_type = 37 and is_deleted = 0;
+#    sql_query_post        = commit;
+#}
+#source videossrcrem : videotpl
+#{
+#    sql_query_pre        = SET NAMES utf8;
+#    sql_query_pre        = start transaction;
+#    sql_query            = \
+#                      select id, video_id, 0 AS latitude, 0 AS longitude, owner_type, owner_id, video_title, video_title_real, video_description, video_additional_info, video_tags, gallery_id, gallery_title, gallery_private, gallery_iscreated, gallery_description, group_private, city_id, 0 AS state_id, country_id, creation_date, crc32(main_group_uid) as main_group_uid, '37' as entity_id from view_videos__search_removed;
+#    sql_query_post        = delete from zanby_entity__changes where entity_type = 37 and is_deleted = 1;
+#    sql_query_post        = commit;
+#}
+# }}}
+
+# source list {{{
+source listtpl : globalsearch
+{
+
+    sql_attr_uint        = entity_id
+    sql_attr_uint        = country_id
+    sql_attr_uint        = category_id
+    sql_attr_uint        = state_id
+    sql_attr_uint        = city_id
+    sql_attr_uint        = age
+    sql_attr_uint        = gender
+    sql_attr_uint        = list_type_id
+    sql_attr_uint        = private
+    sql_attr_uint        = main_group_uid
+    sql_attr_uint		 = owner_user_id
+
+    sql_attr_float       = latitude
+    sql_attr_float       = longitude
+    sql_attr_timestamp   = creation_date
+
+    sql_attr_uint        = record_count
+
+    sql_attr_str2ordinal = title
+    sql_attr_uint        = group_private
+}
+
+source listssrc : listtpl
+{
+    sql_query = \
+                      select \
+                            id, \
+                                city_id, \
+                                state_id, \
+                                country_id, \
+                                age, \
+                                gender, \
+                                list_type_id, \
+                                category_id, \
+                                crc32(main_group_uid) as main_group_uid, \
+                                latitude, \
+                                longitude, \
+                                creation_date, \
+                                private, \
+                            title, \
+                            tags, \
+                            record_count, \
+                            owner_type, \
+                            owner_id, \
+                            group_private, \
+                            xml, \
+                            entry, \
+                            21 as entity_id, \
+                            owner_user_id \
+                        from \
+                            view_lists__search \
+                        where \
+                            group_private=0 and private=0;
+}
+#source listssrcrem : listtpl
+#{
+#    sql_query_pre  = SET NAMES utf8;
+#    sql_query_pre  = start transaction;
+#    sql_query      = \
+#                      select id, title, list_type_id, tags, private, record_count, 0 AS creator_login, 0 AS latitude, 0 AS longitude, creation_date, owner_type, owner_id, group_private, city_id, state_id, country_id, xml, entry, crc32(main_group_uid) as main_group_uid, 21 as entity_id from view_lists__search_removed where group_private=0 and private=0;
+#    sql_query_post = delete from zanby_entity__changes where entity_type = 20 and is_deleted = 1;
+#    sql_query_post = commit;
+#}
+#source listssrcmod : listtpl
+#{
+#    sql_query_pre  = SET NAMES utf8;
+#    sql_query_pre  = start transaction;
+#    sql_query      = \
+#                      select id, title, list_type_id, tags, private, record_count, 0 AS creator_login, 0 AS latitude, 0 AS longitude, creation_date, owner_type, owner_id, group_private, city_id, state_id, country_id, xml, entry, crc32(main_group_uid) as main_group_uid, 21 as entity_id from view_lists__search_modified where group_private=0 and private=0;
+#    sql_query_post = delete from zanby_entity__changes where entity_type = 20 and is_deleted = 0;
+#    sql_query_post = commit;
+#}
+# }}}
+
+# source event {{{
+source eventtpl : globalsearch
+{
+    sql_attr_uint        = entity_id
+    sql_attr_uint        = country_id
+    sql_attr_uint        = category_id
+    sql_attr_uint        = state_id
+    sql_attr_uint        = city_id
+    sql_attr_uint        = age
+    sql_attr_uint        = gender
+    sql_attr_uint        = list_type_id
+    sql_attr_uint        = private
+    sql_attr_uint        = main_group_uid
+    sql_attr_uint		 = owner_user_id
+
+    sql_attr_float       = latitude
+    sql_attr_float       = longitude
+    sql_attr_timestamp   = creation_date
+
+    sql_attr_uint        = group_private
+    sql_attr_uint        = event_id
+    sql_attr_str2ordinal = event_title
+    sql_attr_uint        = event_privacy
+}
+
+source eventssrc : eventtpl
+{
+    sql_query            = \
+                      select \
+                          id, \
+                                city_id, \
+                                state_id, \
+                                country_id, \
+                                age, \
+                                gender, \
+                                list_type_id, \
+                                category_id, \
+                                private,\
+                                crc32(main_group_uid) as main_group_uid, \
+                                latitude, \
+                                longitude, \
+                                creation_date, \
+                          event_id, \
+                          event_title, \
+                          event_privacy, \
+                          event_title as title, \
+                          event_description, \
+                          event_tags, \
+                          owner_id, \
+                          owner_type, \
+                          group_private, \
+                          6 as entity_id, \
+                          owner_user_id \
+                      from \
+                          view_events__search \
+                      where \
+                          group_private=0 and event_privacy=0;
+}
+#source eventssrcrem : eventtpl
+#{
+#    sql_query_pre  = SET NAMES utf8;
+#    sql_query_pre  = start transaction;
+#    sql_query      = \
+#                      select id, event_id, event_title, event_privacy, event_title as title, event_description, event_tags, owner_id, owner_type, city_id, state_id, country_id, creation_date, group_private, crc32(main_group_uid) as main_group_uid, 6 as entity_id from view_events__search_removed;
+#    sql_query_post = delete from zanby_entity__changes where entity_type = 6 and is_deleted = 1;
+#    sql_query_post = commit;
+#}
+#source eventssrcmod : eventtpl
+#{
+#    sql_query_pre  = SET NAMES utf8;
+#    sql_query_pre  = start transaction;
+#    sql_query      = \
+#                      select id, event_id, event_title, event_privacy, event_title as title, event_description, event_tags, owner_id, owner_type, city_id, state_id, country_id, creation_date, group_private, crc32(main_group_uid) as main_group_uid, 6 as entity_id from view_events__search_modified where group_private=0 and event_privacy=0;
+#    sql_query_post = delete from zanby_entity__changes where entity_type = 6 and is_deleted = 0;
+#    sql_query_post = commit;
+#}
+# }}}
+
+# source venue {{{
+source venuetpl : appdb
+{
+    sql_attr_uint            = entity_id
+    sql_attr_uint            = city_id
+    sql_attr_uint            = state_id
+    sql_attr_uint            = country_id
+    sql_attr_uint            = private
+    sql_attr_uint            = category_id
+    sql_attr_uint            = created_by
+
+#    sql_attr_timestamp        = creation_date
+}
+
+source venuessrc : venuetpl
+{
+    sql_query = \
+                      select id, owner_id, owner_type, created_by, city_id, state_id, country_id, type, category_id, name, address1, address2, phone, website, description, private, status, parent_id, 34 as entity_id from view_venues__search;
+}
+#source venuessrcrem : venuetpl
+#{
+#    sql_query_pre  = SET NAMES utf8;
+#    sql_query_pre  = start transaction;
+#    sql_query      = \
+#                      select id, owner_id, owner_type, created_by, city_id, state_id, country_id, type, category_id, name, address1, address2, phone, website, description, private, status, parent_id, 34 as entity_id from view_venues__search_removed;
+#    sql_query_post = delete from zanby_entity__changes where entity_type = 34 and is_deleted = 1;
+#    sql_query_post = commit;
+#}
+#source venuessrcmod : venuetpl
+#{
+#    sql_query_pre  = SET NAMES utf8;
+#    sql_query_pre  = start transaction;
+#    sql_query      = \
+#                      select id, owner_id, owner_type, created_by, city_id, state_id, country_id, type, category_id, name, address1, address2, phone, website, description, private, status, parent_id, 34 as entity_id from view_venues__search_modified;
+#    sql_query_post = delete from zanby_entity__changes where entity_type = 34 and is_deleted = 0;
+#    sql_query_post = commit;
+#}
+# }}}
+
+# source discussion {{{
+source discussiontpl : globalsearch
+{
+    sql_attr_uint        = entity_id
+    sql_attr_uint        = country_id
+    sql_attr_uint        = category_id
+    sql_attr_uint        = state_id
+    sql_attr_uint        = city_id
+    sql_attr_uint        = age
+    sql_attr_uint        = gender
+    sql_attr_uint        = list_type_id
+    sql_attr_uint        = private
+    sql_attr_uint        = main_group_uid
+    sql_attr_uint		 = owner_user_id
+
+    sql_attr_float       = latitude
+    sql_attr_float       = longitude
+    sql_attr_timestamp   = creation_date
+
+    sql_attr_uint           = group_id
+    sql_attr_uint           = position
+    sql_attr_uint           = is_blog
+    sql_attr_uint           = topic_id
+
+    sql_attr_timestamp = created
+}
+
+source discussionssrc : discussiontpl
+{
+    sql_query = \
+              select \
+                  id, \
+                        city_id, \
+                        state_id, \
+                        country_id, \
+                        age, \
+                        gender, \
+                        list_type_id, \
+                        category_id, \
+                        private, \
+                        crc32(main_group_uid) as main_group_uid, \
+                        latitude, \
+                        longitude, \
+                        creation_date, \
+                  content, \
+                  subject, \
+                  position, \
+                  created, \
+                  group_id, \
+                  is_blog, \
+                  40 as entity_id, \
+                  topic_id, \
+                  owner_user_id \
+              from \
+                  view_discussions__search;
+}
+
+# source document_search
+source documentstpl : globalsearch
+{
+
+    sql_attr_uint        = entity_id
+    sql_attr_uint        = country_id
+    sql_attr_uint        = category_id
+    sql_attr_uint        = state_id
+    sql_attr_uint        = city_id
+    sql_attr_uint        = age
+    sql_attr_uint        = gender
+    sql_attr_uint        = list_type_id
+    sql_attr_uint        = private
+    sql_attr_uint        = main_group_uid
+    sql_attr_uint		 = owner_user_id
+
+    sql_attr_float       = latitude
+    sql_attr_float       = longitude
+    sql_attr_timestamp   = creation_date
+    sql_attr_str2ordinal = name
+    sql_attr_uint       = group_private
+    sql_attr_uint       = document_id
+}
+
+source documentssrc : documentstpl
+{
+    sql_query = select \
+                    id, \
+                        city_id, \
+                        state_id, \
+                        country_id, \
+                        age, \
+                        gender, \
+                        list_type_id, \
+                        category_id, \
+                        private, \
+                        crc32(main_group_uid) as main_group_uid, \
+                        latitude, \
+                        longitude, \
+                        creation_date, \
+                    document_id, \
+                    owner_type, \
+                    owner_id, \
+                    original_name, \
+                    LOWER(original_name) as name, \
+                    description, \
+                    documents_tags, \
+                    group_private, \
+                    5 as entity_id, \
+                    owner_user_id \
+                from \
+                    view_documents__search \
+                where \
+                    group_private = 0 and private = 0;
+}
+
+source venue_distancetpl : appdb
+{
+    sql_attr_uint        = city_id
+    sql_attr_uint        = event_id
+    sql_attr_uint        = zipcode_bin
+    sql_attr_float       = latitude
+    sql_attr_float       = longitude
+
+    sql_ranged_throttle  = 0
+}
+
+source venue_distancesrc : venue_distancetpl
+{
+    sql_query = SELECT event_id as id, event_id as event_id, city_id, crc32(zipcode) as zipcode_bin, zipcode, longitude, latitude from view_venue_distance_search;
+
+}
+# }}}
+# }}}
+
+#############################################################################
+## index definition
+#############################################################################
+
+# local index example
+#
+# this is an index which is stored locally in the filesystem
+#
+# all indexing-time options (such as morphology and charsets)
+# are configured per local index
+#
+# Indeces {{{
+# index template {{{
+# index indextpl
+# {
+    # docinfo      = extern
+    # mlock        = 0
+    # morphology   = stem_enru
+    # min_word_len = 2
+    # charset_type = utf-8
+    # enable_star  = 1
+    # html_strip   = 1
+    # #preopen     = 1
+    # #source      = appdb
+    # path         = /my/dir/dummy
+# }
+# }}}
+
+# index tags {{{
+index tags
+{
+    docinfo      = extern
+    mlock        = 0
+    charset_type = utf-8
+    enable_star  = 1
+
+    source       = usertagssrc
+    source       = grouptagssrc
+    source       = gallerytagssrc
+    source       = phototagssrc
+    source       = documenttagssrc
+    source       = listtagssrc
+    source       = listrecordtagssrc
+    source       = videogallerytagssrc
+    source       = videotagssrc
+    source       = eventtagssrc
+    source       = venuetagssrc
+
+    path         = /my/dir/tags
+
+    html_strip   = 0
+    morphology   =
+    min_word_len = 1
+    ngram_len    = 1
+}
+# }}}
+
+# index group {{{
+index group
+{
+    docinfo      = extern
+    mlock        = 0
+    morphology   = stem_enru
+    min_word_len = 2
+    charset_type = utf-8
+    enable_star  = 1
+    html_strip   = 1
+    ngram_len    = 1
+
+    source = groupssrc
+    path   = /my/dir/group
+}
+
+#index groupdelta : group
+#{
+#    source = groupssrcmod
+#    source = groupssrcrem
+#    path = /my/dir/groupdelta
+#}
+#index grouptmp : groupdelta
+#{
+#    path   = /my/dir/grouptmp
+#}
+# }}}
+
+# index user {{{
+index user
+{
+    docinfo      = extern
+    mlock        = 0
+    morphology   = stem_enru
+    min_word_len = 2
+    charset_type = utf-8
+    enable_star  = 1
+    html_strip   = 1
+    ngram_len    = 1
+
+    source = userssrc
+    path   = /my/dir/user
+}
+
+#index userdelta : user
+#{
+#    source = userssrcmod
+#    source = userssrcrem
+#    path = /my/dir/userdelta
+#}
+#index usertmp : userdelta
+#{
+#    path   = /my/dir/usertmp
+#}
+# }}}
+
+# index photo {{{
+index photo
+{
+    docinfo      = extern
+    mlock        = 0
+    morphology   = stem_enru
+    min_word_len = 1
+    charset_type = utf-8
+    enable_star  = 0
+    html_strip   = 1
+    ngram_len    = 1
+    min_infix_len = 0
+    charset_table = U+FF10..U+FF19->0..9, 0..9, U+FF41..U+FF5A->a..z, U+FF21..U+FF3A->a..z,\
+        A..Z->a..z, a..z, U+0149, U+017F, U+0138, U+00DF, U+00FF, U+00C0..U+00D6->U+00E0..U+00F6,\
+        U+00E0..U+00F6, U+00D8..U+00DE->U+00F8..U+00FE, U+00F8..U+00FE, U+0100->U+0101, U+0101,\
+        U+0102->U+0103, U+0103, U+0104->U+0105, U+0105, U+0106->U+0107, U+0107, U+0108->U+0109,\
+        U+0109, U+010A->U+010B, U+010B, U+010C->U+010D, U+010D, U+010E->U+010F, U+010F,\
+        U+0110->U+0111, U+0111, U+0112->U+0113, U+0113, U+0114->U+0115, U+0115, \
+        U+0116->U+0117,U+0117, U+0118->U+0119, U+0119, U+011A->U+011B, U+011B, U+011C->U+011D,\
+        U+011D,U+011E->U+011F, U+011F, U+0130->U+0131, U+0131, U+0132->U+0133, U+0133, \
+        U+0134->U+0135,U+0135, U+0136->U+0137, U+0137, U+0139->U+013A, U+013A, U+013B->U+013C, \
+        U+013C,U+013D->U+013E, U+013E, U+013F->U+0140, U+0140, U+0141->U+0142, U+0142, \
+        U+0143->U+0144,U+0144, U+0145->U+0146, U+0146, U+0147->U+0148, U+0148, U+014A->U+014B, \
+        U+014B,U+014C->U+014D, U+014D, U+014E->U+014F, U+014F, U+0150->U+0151, U+0151, \
+        U+0152->U+0153,U+0153, U+0154->U+0155, U+0155, U+0156->U+0157, U+0157, U+0158->U+0159,\
+        U+0159,U+015A->U+015B, U+015B, U+015C->U+015D, U+015D, U+015E->U+015F, U+015F, \
+        U+0160->U+0161,U+0161, U+0162->U+0163, U+0163, U+0164->U+0165, U+0165, U+0166->U+0167, \
+        U+0167,U+0168->U+0169, U+0169, U+016A->U+016B, U+016B, U+016C->U+016D, U+016D, \
+        U+016E->U+016F,U+016F, U+0170->U+0171, U+0171, U+0172->U+0173, U+0173, U+0174->U+0175,\
+        U+0175,U+0176->U+0177, U+0177, U+0178->U+00FF, U+00FF, U+0179->U+017A, U+017A, \
+        U+017B->U+017C,U+017C, U+017D->U+017E, U+017E, U+0410..U+042F->U+0430..U+044F, \
+        U+0430..U+044F,U+05D0..U+05EA, U+0531..U+0556->U+0561..U+0586, U+0561..U+0587, \
+        U+0621..U+063A, U+01B9,U+01BF, U+0640..U+064A, U+0660..U+0669, U+066E, U+066F, \
+        U+0671..U+06D3, U+06F0..U+06FF,U+0904..U+0939, U+0958..U+095F, U+0960..U+0963, \
+        U+0966..U+096F, U+097B..U+097F,U+0985..U+09B9, U+09CE, U+09DC..U+09E3, U+09E6..U+09EF, \
+        U+0A05..U+0A39, U+0A59..U+0A5E,U+0A66..U+0A6F, U+0A85..U+0AB9, U+0AE0..U+0AE3, \
+        U+0AE6..U+0AEF, U+0B05..U+0B39,U+0B5C..U+0B61, U+0B66..U+0B6F, U+0B71, U+0B85..U+0BB9, \
+        U+0BE6..U+0BF2, U+0C05..U+0C39,U+0C66..U+0C6F, U+0C85..U+0CB9, U+0CDE..U+0CE3, \
+        U+0CE6..U+0CEF, U+0D05..U+0D39, U+0D60,U+0D61, U+0D66..U+0D6F, U+0D85..U+0DC6, \
+        U+1900..U+1938, U+1946..U+194F, U+A800..U+A805,U+A807..U+A822, U+0386->U+03B1, \
+        U+03AC->U+03B1, U+0388->U+03B5, U+03AD->U+03B5,U+0389->U+03B7, U+03AE->U+03B7, \
+        U+038A->U+03B9, U+0390->U+03B9, U+03AA->U+03B9,U+03AF->U+03B9, U+03CA->U+03B9, \
+        U+038C->U+03BF, U+03CC->U+03BF, U+038E->U+03C5,U+03AB->U+03C5, U+03B0->U+03C5, \
+        U+03CB->U+03C5, U+03CD->U+03C5, U+038F->U+03C9,U+03CE->U+03C9, U+03C2->U+03C3, \
+        U+0391..U+03A1->U+03B1..U+03C1,U+03A3..U+03A9->U+03C3..U+03C9, U+03B1..U+03C1, \
+        U+03C3..U+03C9, U+0E01..U+0E2E,U+0E30..U+0E3A, U+0E40..U+0E45, U+0E47, U+0E50..U+0E59, \
+        U+A000..U+A48F, U+4E00..U+9FBF,U+3400..U+4DBF, U+20000..U+2A6DF, U+F900..U+FAFF, \
+        U+2F800..U+2FA1F, U+2E80..U+2EFF,U+2F00..U+2FDF, U+3100..U+312F, U+31A0..U+31BF, \
+        U+3040..U+309F, U+30A0..U+30FF,U+31F0..U+31FF, U+AC00..U+D7AF, U+1100..U+11FF, \
+        U+3130..U+318F, U+A000..U+A48F,U+A490..U+A4CF
+
+    ngram_chars = U+4E00..U+9FBF, U+3400..U+4DBF, U+20000..U+2A6DF, U+F900..U+FAFF,\
+        U+2F800..U+2FA1F, U+2E80..U+2EFF, U+2F00..U+2FDF, U+3100..U+312F, U+31A0..U+31BF,\
+        U+3040..U+309F, U+30A0..U+30FF, U+31F0..U+31FF, U+AC00..U+D7AF, U+1100..U+11FF,\
+        U+3130..U+318F, U+A000..U+A48F, U+A490..U+A4CF
+
+    source        = photossrc
+    path          = /my/dir/photo
+}
+
+#index photodelta : photo
+#{
+#    source = photossrcmod
+#    source = photossrcrem
+#    path = /my/dir/photodelta
+#}
+#index phototmp : photodelta
+#{
+#    path   = /my/dir/phototmp
+#}
+# }}}
+
+# index video {{{
+index video
+{
+    docinfo      = extern
+    mlock        = 0
+    morphology   = stem_enru
+    min_word_len = 1
+    charset_type = utf-8
+    enable_star  = 0
+    html_strip   = 1
+    ngram_len    = 1
+    min_infix_len = 0
+    charset_table = U+FF10..U+FF19->0..9, 0..9, U+FF41..U+FF5A->a..z, U+FF21..U+FF3A->a..z,\
+        A..Z->a..z, a..z, U+0149, U+017F, U+0138, U+00DF, U+00FF, U+00C0..U+00D6->U+00E0..U+00F6,\
+        U+00E0..U+00F6, U+00D8..U+00DE->U+00F8..U+00FE, U+00F8..U+00FE, U+0100->U+0101, U+0101,\
+        U+0102->U+0103, U+0103, U+0104->U+0105, U+0105, U+0106->U+0107, U+0107, U+0108->U+0109,\
+        U+0109, U+010A->U+010B, U+010B, U+010C->U+010D, U+010D, U+010E->U+010F, U+010F,\
+        U+0110->U+0111, U+0111, U+0112->U+0113, U+0113, U+0114->U+0115, U+0115, \
+        U+0116->U+0117,U+0117, U+0118->U+0119, U+0119, U+011A->U+011B, U+011B, U+011C->U+011D,\
+        U+011D,U+011E->U+011F, U+011F, U+0130->U+0131, U+0131, U+0132->U+0133, U+0133, \
+        U+0134->U+0135,U+0135, U+0136->U+0137, U+0137, U+0139->U+013A, U+013A, U+013B->U+013C, \
+        U+013C,U+013D->U+013E, U+013E, U+013F->U+0140, U+0140, U+0141->U+0142, U+0142, \
+        U+0143->U+0144,U+0144, U+0145->U+0146, U+0146, U+0147->U+0148, U+0148, U+014A->U+014B, \
+        U+014B,U+014C->U+014D, U+014D, U+014E->U+014F, U+014F, U+0150->U+0151, U+0151, \
+        U+0152->U+0153,U+0153, U+0154->U+0155, U+0155, U+0156->U+0157, U+0157, U+0158->U+0159,\
+        U+0159,U+015A->U+015B, U+015B, U+015C->U+015D, U+015D, U+015E->U+015F, U+015F, \
+        U+0160->U+0161,U+0161, U+0162->U+0163, U+0163, U+0164->U+0165, U+0165, U+0166->U+0167, \
+        U+0167,U+0168->U+0169, U+0169, U+016A->U+016B, U+016B, U+016C->U+016D, U+016D, \
+        U+016E->U+016F,U+016F, U+0170->U+0171, U+0171, U+0172->U+0173, U+0173, U+0174->U+0175,\
+        U+0175,U+0176->U+0177, U+0177, U+0178->U+00FF, U+00FF, U+0179->U+017A, U+017A, \
+        U+017B->U+017C,U+017C, U+017D->U+017E, U+017E, U+0410..U+042F->U+0430..U+044F, \
+        U+0430..U+044F,U+05D0..U+05EA, U+0531..U+0556->U+0561..U+0586, U+0561..U+0587, \
+        U+0621..U+063A, U+01B9,U+01BF, U+0640..U+064A, U+0660..U+0669, U+066E, U+066F, \
+        U+0671..U+06D3, U+06F0..U+06FF,U+0904..U+0939, U+0958..U+095F, U+0960..U+0963, \
+        U+0966..U+096F, U+097B..U+097F,U+0985..U+09B9, U+09CE, U+09DC..U+09E3, U+09E6..U+09EF, \
+        U+0A05..U+0A39, U+0A59..U+0A5E,U+0A66..U+0A6F, U+0A85..U+0AB9, U+0AE0..U+0AE3, \
+        U+0AE6..U+0AEF, U+0B05..U+0B39,U+0B5C..U+0B61, U+0B66..U+0B6F, U+0B71, U+0B85..U+0BB9, \
+        U+0BE6..U+0BF2, U+0C05..U+0C39,U+0C66..U+0C6F, U+0C85..U+0CB9, U+0CDE..U+0CE3, \
+        U+0CE6..U+0CEF, U+0D05..U+0D39, U+0D60,U+0D61, U+0D66..U+0D6F, U+0D85..U+0DC6, \
+        U+1900..U+1938, U+1946..U+194F, U+A800..U+A805,U+A807..U+A822, U+0386->U+03B1, \
+        U+03AC->U+03B1, U+0388->U+03B5, U+03AD->U+03B5,U+0389->U+03B7, U+03AE->U+03B7, \
+        U+038A->U+03B9, U+0390->U+03B9, U+03AA->U+03B9,U+03AF->U+03B9, U+03CA->U+03B9, \
+        U+038C->U+03BF, U+03CC->U+03BF, U+038E->U+03C5,U+03AB->U+03C5, U+03B0->U+03C5, \
+        U+03CB->U+03C5, U+03CD->U+03C5, U+038F->U+03C9,U+03CE->U+03C9, U+03C2->U+03C3, \
+        U+0391..U+03A1->U+03B1..U+03C1,U+03A3..U+03A9->U+03C3..U+03C9, U+03B1..U+03C1, \
+        U+03C3..U+03C9, U+0E01..U+0E2E,U+0E30..U+0E3A, U+0E40..U+0E45, U+0E47, U+0E50..U+0E59, \
+        U+A000..U+A48F, U+4E00..U+9FBF,U+3400..U+4DBF, U+20000..U+2A6DF, U+F900..U+FAFF, \
+        U+2F800..U+2FA1F, U+2E80..U+2EFF,U+2F00..U+2FDF, U+3100..U+312F, U+31A0..U+31BF, \
+        U+3040..U+309F, U+30A0..U+30FF,U+31F0..U+31FF, U+AC00..U+D7AF, U+1100..U+11FF, \
+        U+3130..U+318F, U+A000..U+A48F,U+A490..U+A4CF
+
+    ngram_chars = U+4E00..U+9FBF, U+3400..U+4DBF, U+20000..U+2A6DF, U+F900..U+FAFF,\
+        U+2F800..U+2FA1F, U+2E80..U+2EFF, U+2F00..U+2FDF, U+3100..U+312F, U+31A0..U+31BF,\
+        U+3040..U+309F, U+30A0..U+30FF, U+31F0..U+31FF, U+AC00..U+D7AF, U+1100..U+11FF,\
+        U+3130..U+318F, U+A000..U+A48F, U+A490..U+A4CF
+
+
+    source        = videossrc
+    path          = /my/dir/video
+    #min_infix_len = 2
+}
+
+#index videodelta : video
+#{
+#    source = videossrcmod
+#    source = videossrcrem
+#    path = /my/dir/videodelta
+#}
+#index videotmp : videodelta
+#{
+#    path   = /my/dir/videotmp
+#}
+# }}}
+
+# index list {{{
+index list
+{
+    docinfo      = extern
+    mlock        = 0
+    morphology   = stem_enru
+    min_word_len = 2
+    charset_type = utf-8
+    enable_star  = 1
+    ngram_len    = 1
+
+    source     = listssrc
+    path       = /my/dir/list
+    html_strip = 0
+}
+
+#index listdelta : list
+#{
+#    source = listssrcmod
+#    source = listssrcrem
+#    path = /my/dir/listdelta
+#}
+#index listtmp : listdelta
+#{
+#    path   = /my/dir/listtmp
+#}
+# }}}
+
+# index event {{{
+index event
+{
+    docinfo      = extern
+    mlock        = 0
+    morphology   = stem_enru
+    min_word_len = 2
+    charset_type = utf-8
+    enable_star  = 1
+    ngram_len    = 1
+
+    source     = eventssrc
+    path       = /my/dir/event
+    html_strip = 0
+}
+
+#index eventdelta : event
+#{
+#    source = eventssrcmod
+#    source = eventssrcrem
+#    path = /my/dir/eventdelta
+#}
+#index eventtmp : eventdelta
+#{
+#    path   = /my/dir/eventtmp
+#}
+# }}}
+
+# index venue {{{
+index venue
+{
+    docinfo      = extern
+    mlock        = 0
+    morphology   = stem_enru
+    min_word_len = 2
+    charset_type = utf-8
+    enable_star  = 1
+    ngram_len    = 1
+
+    source     = venuessrc
+    path       = /my/dir/venue
+    html_strip = 0
+}
+
+#index venuedelta : venue
+#{
+#    source = venuessrcmod
+#    source = venuessrcrem
+#    path = /my/dir/venuedelta
+#}
+#index venuetmp : venuedelta
+#{
+#    path   = /my/dir/venuetmp
+#}
+# }}}
+
+# index discussion {{{
+index discussion
+{
+    docinfo      = extern
+    mlock        = 0
+    morphology   = stem_enru
+    min_word_len = 2
+    charset_type = utf-8
+    enable_star  = 1
+    ngram_len    = 1
+
+    source     = discussionssrc
+    path       = /my/dir/discussion
+    html_strip = 0
+}
+# }}}
+
+
+index document
+{
+    docinfo      = extern
+    mlock        = 0
+    morphology   = stem_en
+    min_word_len = 2
+    charset_type = utf-8
+    enable_star  = 1
+
+    source     = documentssrc
+    path       = /my/dir/document
+    html_strip = 0
+}
+
+# index addressbook {{{
+index addressbook
+{
+    docinfo      = extern
+    mlock        = 0
+    morphology   = stem_enru
+    min_word_len = 2
+    charset_type = utf-8
+    enable_star  = 1
+    ngram_len    = 1
+
+    source        = addressbooksrc
+    path          = /my/dir/addressbook
+    min_infix_len = 2
+    html_strip    = 0
+}
+
+index venue_distance
+{
+    docinfo      = extern
+    mlock        = 0
+    morphology   = stem_en
+    min_word_len = 2
+    charset_type = utf-8
+    enable_star  = 1
+
+    source     = venue_distancesrc
+    path       = /my/dir/venue_distancesrc
+    html_strip = 0
+}
+# }}}
+# }}}
+
+#############################################################################
+## indexer settings
+#############################################################################
+
+# Common config {{{
+indexer
+{
+    # memory limit, in bytes, kiloytes (16384K) or megabytes (256M)
+    # optional, default is 32M, max is 2047M, recommended is 256M to 1024M
+    mem_limit    = 32M
+
+    # maximum IO calls per second (for I/O throttling)
+    # optional, default is 0 (unlimited)
+    #
+    # max_iops   = 40
+
+
+    # maximum IO call size, bytes (for I/O throttling)
+    # optional, default is 0 (unlimited)
+    #
+    # max_iosize = 1048576
+}
+
+#############################################################################
+## searchd settings
+#############################################################################
+
+searchd
+{
+    listen = localhost:4115
+
+    # IP address to bind on
+    # optional, default is 0.0.0.0 (ie. listen on all interfaces)
+    #
+    # address       = 127.0.0.1
+    # DEPRECATED
+
+    # searchd TCP port number
+    # mandatory, default is 3312
+    # DEPRECATED
+    #port            = 3320
+
+
+    # log file, searchd run info is logged here
+    # optional, default is 'searchd.log'
+    #log            = /var/lib/log/searchd-zanby.buick.garage.bogus.log
+    log             = /my/dir/searchd.log
+
+    # query log file, all search queries are logged here
+    # optional, default is empty (do not log queries)
+    #query_log   = /var/lib/log/query-zanby.buick.garage.bogus.log
+    query_log       = /my/dir/searchd-query.log
+
+    # client read timeout, seconds
+    # optional, default is 5
+    read_timeout    = 5
+
+    # maximum amount of children to fork (concurrent searches to run)
+    # optional, default is 0 (unlimited)
+    max_children    = 600
+
+    # PID file, searchd process ID file name
+    # mandatory
+    #pid_file       = /var/run/sphinx/searchd-zanby.buick.garage.bogus.pid
+    pid_file        = /my/dir/searchd.pid
+
+    # max amount of matches the daemon ever keeps in RAM, per-index
+    # WARNING, THERE'S ALSO PER-QUERY LIMIT, SEE SetLimits() API CALL
+    # default is 1000 (just like Google)
+    # 20000 limit is required to do user searches.
+    # Try SetLimits() to lower values to save server resources! - kstep
+    max_matches     = 20000
+
+    # seamless rotate, prevents rotate stalls if precaching huge datasets
+    # optional, default is 1
+    seamless_rotate = 1
+
+    # whether to forcibly preopen all indexes on startup
+    # optional, default is 0 (do not preopen)
+    preopen_indexes = 1
+
+    # whether to unlink .old index copies on succesful rotation.
+    # optional, default is 1 (do unlink)
+    unlink_old      = 1
+
+
+    # maximum allowed per-filter values count. Only used for internal sanity checks, does not directly affect
+    # RAM use or performance. Optional, default is 4096. Introduced in version 0.9.9.
+    max_filter_values = 32768
+
+}
+# }}}

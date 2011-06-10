@@ -1,0 +1,1 @@
+<div class="prInnerTop"><span class="prText2">{t}Please enter a keyword.{/t}</span></div>

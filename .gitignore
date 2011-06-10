@@ -1,0 +1,11 @@
+Implementation/var
+Implementation/nbproject
+Core/nbproject
+nbproject
+
+Core/configs/*.xml
+Implementation/htdocs/.htaccess
+Implementation/configs/*.xml
+Implementation/configs/COLT/*.xml
+Implementation/configs/cache/*.xml
+Implementation/languages

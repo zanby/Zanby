@@ -1,0 +1,4 @@
+<div class="themeA prCOCentrino" id="light_{$cloneId}">
+	<script src="http://www.mogulus.com/scripts/playerv2.js?channel={$channel}&layout=playerEmbedDefault&backgroundColor=0xeff4f9&backgroundAlpha=1&backgroundGradientStrength=0&chromeColor=0x000000&headerBarGlossEnabled=true&controlBarGlossEnabled=true&chatInputGlossEnabled=false&uiWhite=true&uiAlpha=0.5&uiSelectedAlpha=1&dropShadowEnabled=true&dropShadowHorizontalDistance=10&dropShadowVerticalDistance=10&paddingLeft=1&paddingRight=3&paddingTop=6&paddingBottom=1&cornerRadius=3&backToDirectoryURL=null&bannerURL=null&bannerText=null&bannerWidth=320&bannerHeight=50&showViewers=false&embedEnabled=true&chatEnabled=false&onDemandEnabled=true&programGuideEnabled=false&fullScreenEnabled=true&reportAbuseEnabled=false&gridEnabled=false&initialIsOn={if $startOnInit}true{else}false{/if}&initialIsMute=false&initialVolume=4&width=407&height=407&wmode=transparent"></script>
+</div>
+

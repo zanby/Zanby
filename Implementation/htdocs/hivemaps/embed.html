@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Map Test</title>
+    <style type="text/css" title="currentStyle" media="screen">
+     @import "css/map.css";
+    </style> 
+    <!-- ### added for embed -->
+    <style type="text/css">
+      body {width:100% height:100%; margin:0px; padding:0px;}
+      #mapPanel {width:100%; height:100%;}
+      #map {width:100%; height:400px;}
+    </style>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAP_ySLpIe6wJ_yJ9ebqJnDBQ9nvyrv4eBIi-Ax8x25nTdojzm_BSq3TtGOLS3gCQs7ziXAvHqsCHMEw&amp;sensor=false&amp;" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery.1.3.js"></script>
+    <script type="text/javascript" src="js/jquery.address-1.0.js"></script>
+    <script type="text/javascript" src="js/markerclusterer.js"></script>
+    <script type="text/javascript" src="js/countrycodes.iso3166.js"></script>
+    <script type="text/javascript" src="js/hiveutils.js"></script>
+    <script type="text/javascript" src="js/hivemaps.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+  </head>
+  <body>
+    <div id="mapPanel">
+      <div id="mapControls">
+        <div id="mapSearchPanel">
+          <form id="mapSearchForm" action="#" method="GET">
+            <input id="mapSearch" type="text" name="search" />
+            <input type="submit" value="Search" />
+          </form>
+        </div>
+        <div id="mapZoomPanel">
+          <b>Zoom:</b>
+          <a rel="world">World</a>
+          <a rel="africa">Africa</a>
+          <a rel="asia">Asia</a>
+          <a rel="europe">Europe</a>
+          <a rel="northamerica">North America</a>
+          <a rel="southamerica">South America</a>
+          <a rel="oceania">Pacific</a>
+        </div>
+      </div>
+      <div id="map" class="map"></div>
+    </div>
+    <script type="text/javascript">
+      jQuery(function($){
+        CUSTOMMAP.createEmbedMap('map');
+      });
+    </script>
+  </body>
+</html>
+

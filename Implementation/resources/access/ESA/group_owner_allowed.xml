@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding='utf-8'?>
+<config>
+  <module>
+    <groups>
+      <action>settings</action>
+      <action>edittheme</action>
+      <action>edittheme</action>
+      <action>editpublish</action>
+      <action>editpublishstatus</action>
+      <action>editpublishstatus</action>
+      <action>publishnow</action>
+      <action>getpublishdata</action>
+      <action>avatars</action>
+      <action>avatarDelete</action>
+      <action>avatarUpload</action>
+      <action>loadavatar</action>
+      <action>avatarMakePrimary</action>
+      <action>promotion</action>
+      <action>brandGallery</action>
+      <action>webbadges</action>
+    </groups>
+  </module>
+</config>

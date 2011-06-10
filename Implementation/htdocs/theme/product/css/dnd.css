@@ -1,0 +1,648 @@
+/* SPECIAL FOR PRODUCT */
+/* --- */
+/*area where left and right columns are present. This container shoul be on profile, summary and template editor page (ddsummary.tpl and compose_area.tpl). This block also has define paddings for right and bottom areas*/
+.prCOarea{
+  margin-top:10px;
+  overflow:hidden;
+  border: 1px solid #cfcfcf;
+}
+* html .prCOarea{zoom:1;}
+/*Left and Right Blocks. You can change width of columns there*/
+.prCOTarget1 {
+  float:left;
+  display:inline;
+  width: 260px;
+  min-height: 730px;
+  margin-left: 10px;
+  margin-top: 10px;
+  /*for test
+  background-color: #B21F29;*/
+}
+.prCOTarget2 {
+  float:left;
+  display:inline;
+  width: 460px;
+  min-height: 730px;
+  margin-left: 10px;
+  margin-top: 10px;
+  /*for test
+    background-color: #CACACA;*/
+}
+/* --- */
+/*Controls in headers - close, save, cancel icons*/
+.prCO-close {background-image: url(/theme/product/images/buttons/close.gif);}
+.prCO-cancel {background-image: url(/theme/product/images/buttons/reload.gif);}
+.prCO-save {background-image: url(/theme/product/images/buttons/apply.gif);}
+.prCO-edit {background-image: url(/theme/product/images/buttons/edit.gif);}
+/* --- */
+/* settings panel in the top of block in edit mode*/
+.prCO-settings {
+background-color: #f1f1f1;
+border-top: 1px solid #cdd3d5;
+border-bottom: 1px solid #cdd3d5;
+height: 1%;
+list-style: none;
+margin-top: 2px;
+overflow: hidden;
+padding: 0px 2px 3px 2px;
+width:100%;
+}
+
+.prCO-settings ul {width:100% !important;}
+
+.prCO-settings li {
+display: inline;
+float: left;
+margin: 3px 0px 0px 2px; 
+padding: 0 2px;
+width:35px;
+background: transparent url(/theme/product/images/decorators/background/bg-ep-border.gif) repeat-y scroll right top;
+}
+.prCO-settings li a {
+display: block;
+height: 22px;
+}
+/* --- */
+/*Title of Block*/
+.prCO-title {
+  padding: 5px 0px 5px 18px;
+  float: left;
+}
+/* --- */
+/*Window header. prCO-headline - edit mode, in view mode class prCO-headline-view-mode vill be added to header container */
+.prCO-headline {
+    background: url(/theme/product/images/buttons/bgCOHeadline.gif) no-repeat left 3px #C8CDC9;
+	overflow: hidden;
+	height: 1%;
+    /*padding: 4px 5px 1px 18px;*/
+    /*height: 30px;*/
+    
+}
+.prCO-headline-view-mode {
+    background: url(/theme/product/images/buttons/bgCOHeadline-view.gif) no-repeat left 3px #f5f5f5;
+}
+
+/* header buttons */
+.prCO-headline .prCOHeaderButtons a {padding-right: 0; float: left; background-color: #AB650D;}           
+
+
+.prCOHeaderButtons {
+    top: 5px;
+	right: 5px;
+    position: relative;
+}
+.prCOHeaderButtons a {
+    background-repeat: no-repeat;
+    background-position: left top;
+	line-height: 0.5em;
+    /*font-size: 18px; 	
+	padding: 0 8px;*/
+    text-decoration: none;
+    vertical-align: bottom;
+	display: block;
+	margin: 5px 4px 0 0;
+	height: 12px;
+	width: 12px;
+}
+
+
+/* --- */
+/*HEADLINE styles*/
+.prCO-editpanel h3 {
+	padding-bottom: 0;
+}
+.prCO-editpanel-toolbox {
+background-color: #f1f1f1;
+border: 1px solid #f1f1f1;/*#cdd3d5*/
+height: 1%;
+overflow: hidden;
+padding: 0px 0px 4px 0px;
+}
+li a.mceButtonSelected {
+border: 1px solid #6779AA !important; background-color: #D4D5D8;
+
+}
+
+.prCO-editpanel-toolbox li {
+background: url(/theme/product/images/decorators/background/bg-ep-border.gif) repeat-y right top;
+float: left;
+margin: 3px 0px 0px 0px;
+padding: 0px 3px 0px 2px; 
+}
+.prCO-editpanel-toolbox li a {
+display: block;
+border: 1px solid #f1f1f1;
+/*height: 22px;
+width: 25px;*/
+height: 20px;
+width: 23px;
+}
+
+/* --- */
+
+
+
+
+
+/* CO !!!!!!!!!*/
+
+.themeA {
+display: block;
+  margin: 10px;
+}
+
+.prCOCentrino { 
+  text-align: center;
+}
+
+.prClearIndent {margin: 0px;} /*ddContentObject*/
+
+/*Fix for headline view (to save same top padding for empty and not empty headline) */
+.prCOHeadlineView {padding-top:0px;}
+
+
+.prCOHeaderClose {
+    background-image: url(/theme/product/images/buttons/bgClose.gif);
+    width: 15px;
+    height: 15px;
+    display: block;
+    text-decoration: none;
+}
+
+
+
+/*UP n DOWN*/
+.prUpCounter {
+    background: url(/theme/product/images/decorators/background/bgUp.gif) no-repeat left top;
+    height:37px;
+    width:29px;
+    text-align:center;
+    font:bold 12px/12px arial;
+    padding-top:2px;
+    color:#ffffff !important;   
+}
+.prDownButton {
+    background: url(/theme/product/images/decorators/background/bgDown_button.gif) no-repeat left top;
+    height: 12px;
+    width: 44px;
+    display: block; 
+}
+.prUpButton {
+    background: url(/theme/product/images/decorators/background/bgUp_button.gif) no-repeat left top;
+    height:12px;
+    width: 29px;
+    display: block; 
+}
+.prUppedButton {
+    background: url(/theme/product/images/decorators/background/bgUpped_button3.gif) no-repeat left top;
+    height: 12px;
+    width: 29px;
+    display: block; 
+}
+.prDownedButton {
+    background: url(/theme/product/images/decorators/background/bgDowned_button.gif) no-repeat left top;
+    height: 12px;
+    width: 29px;
+    display: block; 
+}
+
+.prGrayBorder {
+	border: 1px solid grey;
+}
+.prInsideList {
+	list-style-position: inside;
+}
+
+/*FROM CUSTOMIZE.CSS
+.prThemeChoserContainer {
+	float: left;
+	clear: both;
+	width: 200px;
+	border: 1px solid #eee;
+	display: inline;
+	margin: 10px;
+}
+
+.prContainer2 tr td {
+	vertical-align: top;
+}
+
+.prThemeChoserContainer tr td {
+	padding: 4px; 
+}
+
+.prThemeChoserContainer tr td div.co-button {
+	float: right;
+}
+
+.prThemeChoserContainer tr td label {
+	font-size: 0.8em;
+}
+
+.prThemeChoserContainer tr td.prDefaultBodyText {
+	text-align: center;
+	font-size: 0.9em;
+}
+
+.prThemeChoserContainer tr td.prAccentText {
+	font-size: 0.75em;	
+	text-align: center;	
+}
+
+.prThemeChoserContainer tr td.prSectionHeader {
+	font-size: 0.9em;	
+	text-align: center;		
+}
+
+.prLinkColor {
+	width: 200px;
+	font-size: 0.9em;	
+	text-align: center;			
+}
+
+.prContentBlockTheme {
+	float: left;
+	width: 284px;
+	clear: both;
+	border: 1px solid #eee;
+	font-size: 0.8em;
+}
+
+.prButtonsPannel {
+	float: left;
+	clear: both;
+	display: inline;
+	width: 78%;
+	margin: 10px 10% 10px 10%;
+}
+
+.prButtonsPannel label {
+	font-size: 0.8em;
+}
+
+.prButtonsPannel table tr td {
+	padding: 10px;
+}
+.prButtonsPannel div.co-button {
+	float: right;
+}
+
+
+
+.prFontFamily1 {
+	font-family: "Times New Roman", Arial, sans-serif;
+}
+
+.prFontFamily2 {
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.prFontFamily3 {
+	font-family: Tahoma, Arial, sans-serif;
+}
+
+.prFontFamily4 {
+	font-family: Verdana, Arial, sans-serif;
+}
+
+.prFontFamily5 {
+	font-family: "Lucida Console", Arial;
+}
+
+.prColor1 {
+	color: red;
+}
+
+.prColor2 {
+	color: green;
+}
+
+.prColor3 {
+	color: blue;
+}
+
+.prColor4 {
+	color: fuchsia;
+}
+
+.prColor5 {
+	color: orange;
+}
+.prTheme-setting {
+    display: inline;
+    float: left;
+    margin-left: 8px;
+    width: 225px;
+	font-size: 1.3em;
+}
+.prTheme-setting input, .prTheme-setting span {
+    vertical-align: middle;
+}
+.prTheme-bgimage {
+    float: left;
+    display: inline;
+    margin-right: 7px;
+}
+.prTheme-removeimage {
+    color: #004488 !important;
+    font-size: 69%;
+    position: relative;
+    top: -4px;
+}
+.prTheme-bgexample {
+    background: url(/theme/product/images/decorators/background/bkgThemeBg.gif) no-repeat left top;
+    width: 351px;
+    height: 351px;
+}
+.prTheme-bgexample-inner {
+     position: relative;
+     top: 78px;
+     left: 82px;
+     width: 268px;
+     height: 255px;
+}
+.prTheme-filename {
+    font-size: 75%;
+    color: #666666;
+}
+.prTheme-setting h2 {
+    color: #333333;
+    font-size: 88%;
+    font-weight: bold;
+    padding: 5px 0px 0px 10px;
+    margin-bottom: 0px;
+}
+.prTheme-setting-slot {
+    border-bottom: 1px solid #cfd5d6;
+    margin-top: 10px;
+    padding-bottom: 20px;
+    width: 200px;
+    padding-left: 10px;
+}
+.prTheme-setting-slot-bkg {
+    border-bottom: none;
+    padding-bottom: 10px;
+}
+.prTheme-setting-slot label {
+    color: #3f3f3f;
+    font-size: 75%;
+    float: left;
+    padding-right: 5px;
+    position: relative;
+    text-align: right;
+    top: 5px;
+    width: 40px;
+}
+.prTheme-font {
+    color: #3f3f3f;
+    display: inline;
+    line-height: 18px;
+    position: relative;
+    top: 3px;
+    margin-bottom: 4px;
+    float: left;
+    font-size: 69%;
+    width: 120px;
+}
+
+.prTheme-textcolor {
+    width: 105px;
+    float: left;
+    font-size: 69%;
+    display: inline;
+    margin-bottom: 4px;
+    position: relative;
+    top: 1px;
+    height: 17px;
+    padding-top: 2px;
+}
+.prTheme-selectoutline {
+    background: url(/theme/product/images/buttons/btnSelectBorder.gif) no-repeat left top;
+    float: left;
+    display: inline;
+    font-size: 1px;
+    text-decoration: none;
+    height: 23px;
+    width: 46px;
+    margin-left: 2px;
+}
+.prTheme-setting-text {
+    display: inline;
+    font-size: 75%;
+    float: left;
+    position: relative;
+    top: 6px;
+}
+.prTheme-section-header {
+    color: #ff6600;
+    font-size: 120%;
+    font-weight: bold;
+}
+.prTheme-link {
+    text-decoration: underline;
+}
+.prTheme-example {
+    float: left;
+    padding-top: 20px;
+}
+.prTheme-action {
+    padding-right: 10px;
+    float: right;
+}
+.prTheme-applychange {
+    color: #333333;
+    float: left;
+    padding-left: 20px;
+    font-size: 75%;
+}
+.prTheme-applychange input, .prTheme-applychange label {
+    vertical-align: middle;	
+}
+.prTheme-action .co-button {
+    float: left;
+    display: inline;
+}
+.prPickColor-popup {
+    position: absolute;
+    z-index: 100;
+	border: 1px solid #808080;
+	background-color:#fff;
+	padding:10px;
+}
+.prPickColor-popup h1 {
+    color: #336666;
+    margin-top: 5px;
+}
+.prTheme-colorlist {
+    overflow: hidden;
+    height: 1%;
+}
+.prTheme-colorlist li {
+    float: left;
+    display: inline;
+}
+.prTheme-colorlist li a {
+    background-color: #c0c0c0;
+    display: block;
+    margin: 1px;
+    height: 18px;
+    width: 20px;
+}
+.prTheme-outlinelist {
+    width: 95%;	
+}
+.prTheme-outlinelist li {
+    padding-top: 2px;
+    border: none !important;
+}
+.prTheme-outlinelist li a {
+    display: block;
+    height: 20px;
+    cursor: pointer;
+}
+.prTheme-outlinelist li a:hover {
+    background-color: #edf7f9;
+    border: 1px solid #bfe2e7;
+    height: 18px;
+}
+.prTheme-outlinelist li a:hover span {
+    height: 9px;
+}
+.prTheme-outlinelist li a span {
+    display: block;
+    height: 10px;
+    margin: 0px 5px 0px 5px;
+    font-size: 1px;
+    line-height: 1px;
+}
+.prTheme-outlinelist li a.prTheme-outlinelist-active {
+    background-color: #edf7f9;
+    border: 1px solid #bfe2e7;
+    height: 18px;
+}
+.prTheme-outlinelist li a.prTheme-outlinelist-active span {
+    height: 9px;
+}
+.prTheme-outlinelist li.themeOutline1 a span {
+    background: url(/theme/product/images/decorators/background/bgNone.gif) no-repeat left 70%;
+    height: 18px;
+}
+.prTheme-outlinelist li.themeOutline1 a:hover span {
+    height: 17px;	
+}
+.prContentObject.themeOutline1 {
+    border-style: none;	
+}
+.themeOutline2 a span {
+    border-bottom: 2px solid #000;	
+}
+.prContentObject.themeOutline2 {
+    border-style: solid;	
+}
+.themeOutline3 a span {
+    border-bottom: 2px dashed #000;	
+}
+.prContentObject.themeOutline3 {
+    border-style: dashed;	
+}
+.prTheme-setting-slot .prContentObject {
+    width: 150px;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    border-top-width: 2px;
+}
+.prFillSimple
+{
+    background-color: #f3f4d5;
+    width: 150px;
+    height: 10px;
+}
+*/
+.prTheme-bgexample {
+	background: #fff url(/theme/product/images/decorators/background/bkgThemeBg.gif) no-repeat;
+	width:351px;
+	height:351px;
+}
+
+.prTheme-bgexample-inner {
+	height:253px;
+	left:75px;
+	position:relative;
+	top:75px;
+	width:250px;
+}
+
+
+/*from marina-css theme*/
+.prTheme-selectcolor {
+	background: url(/theme/product/images/buttons/btnSelectColor.gif) no-repeat left top;
+}
+.prTheme-select {
+	padding:4px 19px;	
+	text-decoration:none;
+}
+.prTheme-selectimage {
+	background: url(/theme/product/images/buttons/btnSelectImage.gif) no-repeat left top;
+}
+.prTheme-viewcolor {
+	padding:4px 22px;		
+	text-decoration:none;		
+}
+.prTheme-outline {
+	background: url(/theme/product/images/buttons/btnSelectBorder.gif) no-repeat left top;	
+}
+
+.prPickColor-popup {
+	position:absolute;
+	z-index:100;
+    border: 1px solid #808080;
+    background-color:#fff;
+    padding:10px;
+}
+.prTheme-outlinelist li {
+    padding-top: 2px;
+}
+.prTheme-outlinelist li a {
+    display: block;
+    height: 20px;
+    cursor: pointer;
+}
+.prTheme-outlinelist li a:hover {
+    background-color: #edf7f9;
+    border: 1px solid #bfe2e7;
+    height: 18px;
+}
+.prTheme-outlinelist li a:hover span {
+    height: 9px;
+}
+.prTheme-outlinelist li a span {
+    display: block;
+    height: 10px;
+    margin: 0px 5px;
+    font-size: 1px;
+    line-height: 1px;
+}
+.prTheme-outlinelist li.themeOutline1 a span {
+    background: url(/theme/product/images/decorators/background/bgNone.gif) no-repeat left 70%;
+    height: 18px;
+}
+.prTheme-outlinelist li.themeOutline1 a:hover span {
+   	height: 17px;
+}
+.themeOutline2 a span{
+    border-bottom: 2px solid #000;	
+}
+.themeOutline3 a span{
+    border-bottom: 2px dashed #000;	
+}
+
+/*   */
+
+.prAutoWidth  {width:auto!important;}
+
+.prNoBorder {border:none!important;}
+
+.prContentObjectComposeMode label {
+	font-size:0.8em;
+}

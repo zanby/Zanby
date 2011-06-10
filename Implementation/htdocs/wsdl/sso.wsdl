@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" name="SSOService" targetNamespace="http://zanby-product.com/soap/sso" xmlns:tns="http://zanby-product.com/soap/sso" xmlns:impl="http://zanby-product.com/soap/sso" xmlns:xsd1="http://zanby-product.com/soap/sso" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <portType name="SSOServicePortType">
+    <operation name="testService">
+      <input message="tns:TestServiceRequest"/>
+      <output message="tns:TestServiceResponse"/>
+    </operation>
+    <operation name="authByUsernameAndPassword" parameterOrder="username password">
+      <input message="tns:AuthByUsernameAndPasswordRequest"/>
+      <output message="tns:AuthByUsernameAndPasswordResponse"/>
+    </operation>
+    <operation name="authByEmailAndPassword" parameterOrder="email password">
+      <input message="tns:AuthByEmailAndPasswordRequest"/>
+      <output message="tns:AuthByEmailAndPasswordResponse"/>
+    </operation>
+    <operation name="restoreByUsername" parameterOrder="username">
+      <input message="tns:RestoreByUsernameRequest"/>
+      <output message="tns:RestoreByUsernameResponse"/>
+    </operation>
+    <operation name="restoreByEmail" parameterOrder="email">
+      <input message="tns:RestoreByEmailRequest"/>
+      <output message="tns:RestoreByEmailResponse"/>
+    </operation>
+    <operation name="getUserInfoBySSOKey" parameterOrder="key">
+      <input message="tns:GetUserInfoBySSOKeyRequest"/>
+      <output message="tns:GetUserInfoBySSOKeyResponse"/>
+    </operation>
+    <operation name="getUserAvatarByEmail" parameterOrder="email size">
+      <input message="tns:GetUserAvatarByEmailRequest"/>
+      <output message="tns:GetUserAvatarByEmailResponse"/>
+    </operation>
+    <operation name="getProfileUrlByEmail" parameterOrder="email">
+      <input message="tns:GetProfileUrlByEmailRequest"/>
+      <output message="tns:GetProfileUrlByEmailResponse"/>
+    </operation>
+    <operation name="commit" parameterOrder="key">
+      <input message="tns:CommitRequest"/>
+      <output message="tns:CommitResponse"/>
+    </operation>
+  </portType>
+  <binding name="SSOServiceBinding" type="tns:SSOServicePortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="testService">
+      <soap:operation soapAction="urn:SSOService#SSOServiceServer#testService"/>
+      <input>
+        <soap:body use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="authByUsernameAndPassword">
+      <soap:operation soapAction="urn:SSOService#SSOServiceServer#authByUsernameAndPassword"/>
+      <input>
+        <soap:body parts="username password" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="authByEmailAndPassword">
+      <soap:operation soapAction="urn:SSOService#SSOServiceServer#authByEmailAndPassword"/>
+      <input>
+        <soap:body parts="email password" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="restoreByUsername">
+      <soap:operation soapAction="urn:SSOService#SSOServiceServer#restoreByUsername"/>
+      <input>
+        <soap:body parts="username" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="restoreByEmail">
+      <soap:operation soapAction="urn:SSOService#SSOServiceServer#restoreByEmail"/>
+      <input>
+        <soap:body parts="email" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="getUserInfoBySSOKey">
+      <soap:operation soapAction="urn:SSOService#SSOServiceServer#getUserInfoBySSOKey"/>
+      <input>
+        <soap:body parts="key" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="getUserAvatarByEmail">
+      <soap:operation soapAction="urn:SSOService#SSOServiceServer#getUserAvatarByEmail"/>
+      <input>
+        <soap:body parts="email size" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="getProfileUrlByEmail">
+      <soap:operation soapAction="urn:SSOService#SSOServiceServer#getProfileUrlByEmail"/>
+      <input>
+        <soap:body parts="email" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="commit">
+      <soap:operation soapAction="urn:SSOService#SSOServiceServer#commit"/>
+      <input>
+        <soap:body parts="key" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body parts="return" use="encoded" namespace="http://zanby-product.com/soap/sso" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <message name="TestServiceRequest"/>
+  <message name="TestServiceResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <message name="AuthByUsernameAndPasswordRequest">
+    <part name="username" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+  </message>
+  <message name="AuthByUsernameAndPasswordResponse">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <message name="AuthByEmailAndPasswordRequest">
+    <part name="email" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+  </message>
+  <message name="AuthByEmailAndPasswordResponse">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <message name="RestoreByUsernameRequest">
+    <part name="username" type="xsd:string"/>
+  </message>
+  <message name="RestoreByUsernameResponse">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <message name="RestoreByEmailRequest">
+    <part name="email" type="xsd:string"/>
+  </message>
+  <message name="RestoreByEmailResponse">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <message name="GetUserInfoBySSOKeyRequest">
+    <part name="key" type="xsd:string"/>
+  </message>
+  <message name="GetUserInfoBySSOKeyResponse">
+    <part name="return" type="xsd:array"/>
+  </message>
+  <message name="GetUserAvatarByEmailRequest">
+    <part name="email" type="xsd:string"/>
+    <part name="size" type="xsd:int"/>
+  </message>
+  <message name="GetUserAvatarByEmailResponse">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <message name="GetProfileUrlByEmailRequest">
+    <part name="email" type="xsd:string"/>
+  </message>
+  <message name="GetProfileUrlByEmailResponse">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <message name="CommitRequest">
+    <part name="key" type="xsd:string"/>
+  </message>
+  <message name="CommitResponse">
+    <part name="return" type="xsd:boolean"/>
+  </message>
+  <service name="SSOServiceService">
+    <port name="SSOServicePort" binding="tns:SSOServiceBinding">
+      <soap:address location="http://zanby-product.sukharev.buick/soap.sso.server.php"/>
+    </port>
+  </service>
+</definitions>

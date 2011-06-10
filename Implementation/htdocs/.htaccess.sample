@@ -1,0 +1,62 @@
+#Please uncomment this line on developers environment and set required environment name
+#SetEnv APPLICATION_ENV production
+
+# .htaccess configuration  -*- apache -*-
+Options -Indexes
+DirectoryIndex index.php index.html index.htm
+Options +FollowSymlinks
+
+# mod_rewrite settings
+RewriteEngine on
+RewriteBase /
+
+# see Tiny Url key length in config file
+# Options in parentheses check Event Invite Code only
+# {10} - Length of generated key for Tiny Url, see config on TinyUrl server side
+# {32} - Unique hash for event access for unregistered users
+RewriteCond %{REQUEST_URI} ^\/[0-9a-zA-Z]{10}\/*([0-9a-fA-F]{32})?\/*$
+RewriteRule .* tiny-url-entry.php [L]
+
+RewriteCond %{DOCUMENT_ROOT}/maintenance-page.html -f
+RewriteCond %{REQUEST_FILENAME} !.*theme/common/images/underConstruction\.gif
+RewriteRule .* maintenance-page.html [L]
+
+RewriteCond %{REQUEST_URI} (js|css|images)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule  ^[0-9]+\.[0-9]+(\.[0-9]+)?(\.[0-9]+)?/(theme/.*/)?(js|css|images)/(.*) /$3/$4/$5 [L,QSA]
+
+RewriteCond %{HTTP_HOST} ^(.+)\.(users|groups)\.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule  ^([^/]+)?/([^/]+)?/(.*) index.php?/$1/%2/$2/name/%1/$3 [L,QSA]
+
+RewriteCond %{HTTP_HOST} ^(users|groups)\.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule  ^([^/]+)?/([^/]+)?/(.*) index.php?/$1/%1/$2/$3 [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} widget\.js
+RewriteRule  ^(.*)   index.php?/en/widget/index/         [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !widget\.js
+RewriteRule  ^(.*)   index.php?/$1          [L,QSA]
+
+<FilesMatch "\.(js|css|bmp)$">
+  SetOutputFilter DEFLATE
+</FilesMatch>
+
+<FilesMatch "\.(ico|pdf|bmp|flv|jpg|jpeg|png|gif|js|css|swf)$">
+  Header set Cache-Control "max-age=290304000"
+  Header unset ETag
+</FilesMatch>
+
+# php settings
+php_value magic_quotes_gpc       0
+php_value magic_quotes_runtime   0
+php_value magic_quotes_sybase    0
+
+# Protect files and directories:
+<Files ~ "\.(ini|log|tmpl|.svn)$">
+  order deny,allow
+  deny from all
+</Files>

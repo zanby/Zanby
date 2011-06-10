@@ -1,0 +1,1 @@
+{include file="content_objects/ddMyPhotos/light_block_wide.tpl"}

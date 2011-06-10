@@ -1,0 +1,45 @@
+Import API
+
+There are two sources - webservice and file
+
+File can be csv, ldif or vcard.
+
+There are base classes for file (File/Base.php) and webservice (Webservice/Base.php)
+
+Classes tree
+
+(prefix - Warecorp_Import_)
+
+File  - factory for concrete classes
+  File_Csv - base class for csv import
+    File_Csv_Outlook - class for import from M$ Outlook
+    File_Csv_OutlookExpress - class for import from Outlook Express (inherits File_Csv_Outlook)
+    File_Csv_WindowsAddressBook - class for import from WindowsAddressBook (inherits File_Csv_OutlookExpress)
+  File_Ldif - base class for ldif import 
+    File_Ldif_Thunderbirs - empty class (parent class do all work)
+  File_Vcf - base class for vcard import 
+    File_Ldif_PalmDesktop - empty class (parent class do all work)
+  
+Webservice - factory for webservices concrete classes
+  Webservice_Base - base class for webservices
+    Webservice_GmailCom - import from gmail.com. Inherits Webservice_Base
+    Webservice_YahooCom - import from yahoo.com. Inherits Webservice_Base
+    Webservice_YahooCoUk - inherits Webservice_YahooCom (parent class do all work)
+
+Webservices - all webservice classes inherits Base class
+
+Files - Csv, Vcard and Ldif base classes inherits
+
+
+
+------------
+
+Steps for making new import subclass
+
+1. Create Warecorp_Import_{File|Webservice}_<name>
+
+2. Add to select-input in modules/users/addressbook/import.php by option key. Option key is name of class without prefix Warecorp_Import_<type>
+
+3. Make login() (for webservice only) and  getContacts() methods (see examples in sourcecode)
+
+4. It's all done, doode :)

@@ -1,0 +1,45 @@
+/**
+ * @name: dd.css
+ * @description: customize dropdown
+ * @author: Marghoob Suleman - http://www.marghoobsuleman.com/
+ * @version: 1.3
+ * @date: March 09, 2009
+ * @released: March 30, 2009 {1.3}, March 22, 2009 {1.2}, March 20, 2009 {1.0}
+ * @category: Javascript Custom Component
+ * @copyright (c) 2009 Marghoob Suleman (powered by: http://www.giftlelo.com/)
+ */
+.msDropDown div{display:inline-block; color:#000000; text-align:left;}
+
+.coloredScroll {
+	/*
+	* Works only in IE.
+	*/
+	/*
+	scrollbar-face-color: 3dface !important;
+	scrollbar-shadow-color: ThreeDDarkShadow !important;
+	scrollbar-highlight-color: ThreeDHighlight !important;
+	scrollbar-3dlight-color: ThreeDLightShadow !important;
+	scrollbar-darkshadow-color: ThreeDDarkShadow !important;
+	scrollbar-track-color: Scrollbar !important;
+	scrollbar-arrow-color: ButtonText !important;
+	*/
+}
+.msDropDown {
+	background:#f2f2f2 url(../js/jquery/msdropdown/bg.gif) repeat-x;
+	border:1px solid #c3c3c3;
+	padding:2px 0 0 2px;
+	width:auto;
+	display:inline-block;
+	position:absolute;
+}
+.msDropDown .msDropDown_Child{border:1px solid #c3c3c3;display:none; width:auto; margin:0; padding:0; cursor:pointer; background-color:#FFFFFF; height:auto; overflow-y:auto; overflow-x:hidden}
+.msDropDown .msEnabled{cursor:pointer}
+.msDropDown .msDisabled{cursor:default;}
+.msDropDown .msArrow{width:16px;padding:1px 1px 3px 0; position:relative; float:right;}
+.msDropDown .msDropdownTitle{width:auto; display:inline-block;float:left;padding-top:2px; overflow:hidden;}
+.msDropDown img{border:0}
+.msDropDown a img.icon{padding-right:2px;}
+.msDropDown .msDropDown_Child a{padding:3px 0 3px 2px; text-decoration:none;; display:block; height:auto; clear:both; margin:0; width:130%;}
+.msDropDown .msDropDown_Child a, .msDropDown .msDropDown_Child a:visited{color:#000000;}
+.msDropDown .msDropDown_Child a:hover{color:#000000; background-color:#F0F0F0;}
+.msDropDown .msDropDown_Child a.selected{color:#000000; background-color:#F0F0F0;}

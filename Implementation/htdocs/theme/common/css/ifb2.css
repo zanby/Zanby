@@ -1,0 +1,53 @@
+.ifbinfoboxswitch {
+		position:absolute;top:0px;left:0px;
+		width:140px;height:40px;
+		cursor:pointer;display:block;
+	}
+
+.ifbke {
+		display:inline;
+	}
+
+.ifbke input {
+		font-size:12px;
+		color:darkgreen;
+		width:100px;
+		margin-left:5px;
+	}
+
+.ifbke a {
+		border:1px solid #dddddd; background-color:#666666;color:white;
+		text-decoration:none; 
+		margin-left:10px; padding:2px; 
+		font-size:10px;
+		}
+
+.ifbinfobox {
+		display:none;
+		background-color:#ffffff;
+		position:absolute; top:0px; left:0px;
+		width:142px; height:96px; z-index:100;
+		font-family: "Lucida Grande", Lucida, Helvetica, sans-serif;
+		color: white;
+		padding-top:22px;
+		text-align: center;
+		font-size:14px;
+		background-color: #93cc11;
+		border-left: 1px solid grey;
+		border-right: 1px solid grey;
+		border-bottom:1px solid grey;
+	}
+
+.ifbinfobox a {
+		color:white;
+	}
+	
+.ifbclosebtn {
+		position:absolute;
+		top:4px;
+		left:111px;
+		cursor:pointer;
+		color: #453B2E;
+		font-family: "Lucida Grande", Lucida, Helvetica, sans-serif;
+		font-size:10px;
+	}

@@ -1,0 +1,1 @@
+{if !$rss_url}{t}RSS Feed is Empty{/t}{else}{t}Invalid RSS Feed{/t}{/if}

@@ -1,0 +1,1 @@
+{include file="content_objects/ddGroupWidgetMap/preview_mode_narrow.tpl"}

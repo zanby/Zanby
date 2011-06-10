@@ -1,0 +1,30 @@
+.loading {background:#FFF url('/theme/product/images/decorators/loading.gif') 4px 4px no-repeat; width:40px; height:40px;}
+#mapPanel {width:730px; margin:0; padding:0;}
+#mapSearchPanel {float:left;}
+#mapZoomPanel {float:right;}
+#mapZoomPanel a {cursor:pointer;}
+#mapZoomPanel a:after {content:'|'; margin:0 2px 0 4px;}
+#mapZoomPanel a:last-child:after {content:'';}
+.map {clear:both; height:400px; width:730px; margin:0; padding:0;}
+#mapEmbed {text-align:right;}
+#mapEmbedCode {width:160px;}
+#mapEmbedOptions {display:none;}
+
+#mapListPanel {width:680px;}
+#markerListTable div.row {clear:both; width:100%;}
+#markerListTable div.row div {padding:10px; float:left;}
+#markerListTable div.row div.clear {padding:0; float:none; clear:both;}
+#markerListTable .row div.title {font-weight:bold; width:250px;}
+#markerListTable .row div.city {width:200px;}
+#markerListTable .row div.country {width:150px;}
+#markerList .title a {text-decoration:none; color:#333;}
+#markerList .row0 {background-color:#CDCDCD;}
+#markerList .row1 {background-color:#E8E8E8;}
+
+
+#infoTabLocation, #infoTabInfo {width:300px; height:160px; overflow:auto;}
+#infoTabLocation div.title {font-weight:bold; font-size:1.2em; color:#333;}
+#infoTabLocation div.address {margin-top:15px; color:#666;}
+#infoTabLocation div.nav {margin-top:20px;}
+#infoTabLocation div.nav a {margin-right:15px; color:#666;}
+#infoMarkerList {max-width:400px; height:120px; overflow:auto;}

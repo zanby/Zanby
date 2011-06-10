@@ -1,0 +1,140 @@
+/* Copyright (c) 2006 Yahoo! Inc. All rights reserved. */
+
+/* first or middle sibling, no children */
+.ygtvtn {
+	width:16px; height:20px;
+	background: url(/theme/product/images/decorators/tree/tn.gif) 0 0 no-repeat;
+}
+
+/* first or middle sibling, collapsable */
+.ygtvtm {
+	width:16px; height:20px;
+	cursor:pointer ;
+	background: url(/theme/product/images/decorators/tree/tm.gif) 0 0 no-repeat;
+}
+
+/* first or middle sibling, collapsable, hover */
+.ygtvtmh {
+	width:16px; height:20px;
+	cursor:pointer ;
+	background: url(/theme/product/images/decorators/tree/tmh.gif) 0 0 no-repeat;
+}
+
+/* first or middle sibling, expandable */
+.ygtvtp {
+	width:16px; height:20px;
+	cursor:pointer ;
+	background: url(/theme/product/images/decorators/tree/tp.gif) 0 0 no-repeat;
+}
+
+/* first or middle sibling, expandable, hover */
+.ygtvtph {
+	width:16px; height:20px;
+	cursor:pointer ;
+	background: url(/theme/product/images/decorators/tree/tph.gif) 0 0 no-repeat;
+}
+
+/* last sibling, no children */
+.ygtvln {
+	width:16px; height:20px;
+	background: url(/theme/product/images/decorators/tree/ln.gif) 0 0 no-repeat;
+}
+
+/* Last sibling, collapsable */
+.ygtvlm {
+	width:16px; height:20px;
+	cursor:pointer ;
+	background: url(/theme/product/images/decorators/tree/lm.gif) 0 0 no-repeat;
+}
+
+/* Last sibling, collapsable, hover */
+.ygtvlmh {
+	width:16px; height:20px;
+	cursor:pointer ;
+	background: url(/theme/product/images/decorators/tree/lmh.gif) 0 0 no-repeat;
+}
+
+/* Last sibling, expandable */
+.ygtvlp {
+	width:16px; height:20px;
+	cursor:pointer ;
+	background: url(/theme/product/images/decorators/tree/lp.gif) 0 0 no-repeat;
+}
+
+/* Last sibling, expandable, hover */
+.ygtvlph {
+	width:16px; height:20px; cursor:pointer ;
+	background: url(/theme/product/images/decorators/tree/lph.gif) 0 0 no-repeat;
+}
+
+/* Loading icon */
+.ygtvloading {
+	width:16px; height:20px;
+	background: url(/theme/product/images/decorators/tree/loading.gif) 0 0 no-repeat;
+}
+
+/* the style for the empty cells that are used for rendering the depth
+ * of the node */
+.ygtvdepthcell {
+	width:16px; height:20px;
+	background: url(/theme/product/images/decorators/tree/vline.gif) 0 0 no-repeat;
+}
+
+.ygtvblankdepthcell { width:16px; height:20px; }
+
+/* the style of the div around each node */
+.ygtvitem {
+}
+.ygtvitem table {
+}
+.ygtvitem td {
+/*
+    border : 1px solid #CB0000;
+    padding : 2px;
+    white-space : nowrap;*/
+}
+/* the style of the div around each node's collection of children */
+.ygtvchildren {
+}
+* html .ygtvchildren { height:1px; }
+
+/* the style of the text label in ygTextNode */
+
+.ygtvlabel, .ygtvlabel:link, .ygtvlabel:visited, .ygtvlabel:hover {
+	margin-left:2px;
+	text-decoration: none;
+}
+
+.ygtvspacer { height: 10px; width: 12px; margin: 2px; }
+
+.tree_node_label {
+}
+.tree_node_label a {
+    text-decoration: none;
+}
+.tree_numeration_1 {
+    padding-left: 3px;
+    padding-right: 3px;
+    background-color : #CCFF99;
+    font-weight : bold;
+}
+.tree_numeration_2 {
+    padding-left: 3px;
+    padding-right: 3px;
+    background-color : #FFCC00;
+    font-weight : bold;
+}
+.tree_numeration_3 {
+    padding-left: 3px;
+    padding-right: 3px;
+    background-color : #9999FF;
+    font-weight : bold;
+}
+.tree_numeration_4 {
+    padding-left: 3px;
+    padding-right: 3px;
+    background-color : #CC99FF;
+    font-weight : bold;
+}
+
+

@@ -1,0 +1,19 @@
+/* Three percentage columns */
+.prContent {
+    float: left;
+    width: 100%;
+}
+.prContent-inner {
+    margin: 0 0 0 155px;
+}
+*html .prContent-inner, *html .prLayout-inner  {
+    zoom:1;
+}
+.prLeftNavBlock {
+    float: left;
+    margin-left: -100%;
+    width: 155px;
+}
+.prFooter {
+    clear: both;
+}

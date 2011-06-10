@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+    <production>
+        <implementations>
+            <!--implementation>
+                <groupUID>_UID_OF_IMPLEMENTATION_FAMILY_</groupUID>
+                <groupHost>_HTTP_HOST_OF_FAMILY_</groupHost>
+                <alowSSO>_USE_OR_NOT_(true|false)_</alowSSO>
+            </implementation-->
+        </implementations>
+    </production>
+
+    <development extends="production"></development>
+
+</config>

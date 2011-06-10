@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding='utf-8'?>
+<config>
+  <module>
+    <users>
+      <action>settings</action>
+      <action>bookmarks</action>
+      <action>edit</action>
+      <action>compose</action>
+      <action>theme</action>
+
+      <action>avatars</action>
+      <action>avatarupload</action>
+      <action>avatardelete</action>
+      <action>loadavatar</action>
+      <action>avatarmakeprimary</action>
+
+      <action>groups</action>
+      <action>messagelist</action>
+      <action>messageview</action>
+      <action>messagecompose</action>
+      <action>messagedelete</action>
+      <!--                    <action>friends</action> -->
+      <action>gallerycreate</action>
+      <action>galleryedit</action>
+      <action>gallerydelete</action>
+      <action>galleryshare</action>
+      <action>galleryUnshare</action>
+
+      <action>calendaredit</action>
+      <action>calendaradd</action>
+      <!--
+	  <action>listsadd</action> <action>listsedit</action>
+	  <action>listsdelete</action> <action>listsAddSave</action>
+	  <action>listsAddAppend</action> <action>listsAddDelete</action>
+	  <action>listsEditSave</action>
+      -->
+      <action>dustep1</action>
+      <action>dustep2</action>
+      <action>dustep3</action>
+      <action>docdelete</action>
+      <action>docshare</action>
+      <action>docunshare</action>
+      <action>doceditshare</action>
+    </users>
+  </module>
+</config>

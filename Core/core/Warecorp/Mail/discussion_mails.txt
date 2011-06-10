@@ -1,0 +1,27 @@
+
+/**
+*   DIGEST_DISCUSSION_DAILY
+*/
+==============================================================
+{capture name="_from_"}
+    {$SITE_NAME_AS_STRING}@{$DOMAIN_FOR_EMAIL}
+{/capture}
+
+{capture name="_subject_"}
+    Discussion Server Subscription
+{/capture}
+
+{capture name="_pmb_subject_"}
+    Discussion Server Subscription
+{/capture}
+
+{capture name="_mail_text_part_"}
+    DIGEST_DISCUSSION_DAILY
+{/capture}
+
+{capture name="_mail_html_part_"}
+{/capture}
+
+{capture name="_pmb_part_"}
+    DIGEST_DISCUSSION_DAILY
+{/capture}

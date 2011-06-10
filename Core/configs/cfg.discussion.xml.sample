@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding='utf-8'?>
+<config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+    <production>
+        <!--
+            Expressions for detecting topic name and whether email message is reply or not by email subject.
+            Each regex_part is a part of regex as follows /^regex_part$/i, so you don't need specify /^ and $/i in it.
+        -->
+        <reply_expressions>
+            <expression>
+                <regex_part>(re:)\s*((\[.+(?=\])\])|({.+(?=})}))?\s*(.+)</regex_part>
+                <topic_name_group_index>5</topic_name_group_index>
+            </expression>
+        </reply_expressions>
+
+        <!--
+            Expressions for detecting topic name by email subject when email message is NOT reply (It means
+            that it is new topic).
+            Each regex_part is a part of regex as follows /^regex_part$/i, so you don't need specify /^ and $/i in it.
+        -->
+        <new_topic_expression>
+            <regex_part>((\[.+(?=\])\])|({.+(?=})}))?\s*(.+)</regex_part>
+            <topic_name_group_index>4</topic_name_group_index>
+        </new_topic_expression>
+		
+        <default_footer>
+            <plain>
+				<![CDATA[
+
+Thanks,
+{*SITE_NAME*} Discussions
+------------------------------------------------------
+NO SPAM
+If you receive an email that you find offensive or contains advertisements for products or services other
+than {*SITE_NAME_AS_DOMAIN*}, please forward the message immediately to {*SITE_EMAIL_FEEDBACK*}. Please review
+{*SITE_NAME*}`s Privacy Policy at {*SITE_LINK_PRIVACY*}.If you found this email in your junk/bulk
+folder, please add our address to ensure that you`ll receive all future {*SITE_NAME*} invitations and messages
+in your Inbox.
+
+DISCLAIMER
+{*SITE_NAME_AS_DOMAIN*} does not screen private email between members, nor are we liable for the content of these
+messages.  All members are bound by the {*SITE_NAME_AS_DOMAIN*} terms of service.
+{*SITE_LINK_TERMS*}
+
+HOW TO UNSUBSCRIBE
+If you are a {*SITE_NAME*} member, you may unsubscribe from {*SITE_NAME_AS_DOMAIN*} and the {*SITE_NAME_AS_DOMAIN*} service as a
+whole, by clicking click here:
+
+{*SITE_LINK_UNSUBSCRIBE*}
+
+Then open section Cancel Your Account and follow the instructions.
+
+This is an automated e-mail. Please do not respond.
+				]]>
+            </plain>
+            <html>
+				<![CDATA[
+<br/><br/>
+Thanks, <br/>
+{*SITE_NAME*} Discussions <br/>
+------------------------------------------------------ <br/>
+NO SPAM <br/>
+If you receive an email that you find offensive or contains advertisements for products or services other <br/>
+than <a href="{*SITE_URL*}">{*SITE_NAME_AS_DOMAIN*}</a>, please forward the message immediately to <a href="mailto:{*SITE_EMAIL_FEEDBACK*}">{*SITE_EMAIL_FEEDBACK*}</a>. Please review <br/>
+{*SITE_NAME*}`s Privacy Policy at <a href="{*SITE_LINK_PRIVACY*}">{*SITE_LINK_PRIVACY*}</a>. If you found this email in your junk/bulk <br/>
+folder, please add our address to ensure that you`ll receive all future {*SITE_NAME*} invitations and messages <br/>
+in your Inbox. <br/><br/>
+
+DISCLAIMER <br/>
+<a href="{*SITE_URL*}">{*SITE_NAME_AS_DOMAIN*}</a> does not screen private email between members, nor are we liable for the content of these <br/>
+messages.  All members are bound by the <a href="{*SITE_LINK_TERMS*}">{*SITE_NAME_AS_DOMAIN*} terms of service</a>.<br/><br/>
+
+HOW TO UNSUBSCRIBE <br/>
+If you are a {*SITE_NAME*} member, you may unsubscribe from <a href="{*SITE_URL*}">{*SITE_NAME_AS_DOMAIN*}</a> and the <a href="{*SITE_URL*}">{*SITE_NAME_AS_DOMAIN*}</a> service as a <br/>
+whole, by clicking click here: <br/><br/>
+
+<a href="{*SITE_LINK_UNSUBSCRIBE*}">{*SITE_LINK_UNSUBSCRIBE*}</a> <br/><br/>
+
+Then open section Cancel Your Account and follow the instructions. <br/><br/>
+
+This is an automated e-mail. Please do not respond. <br/>
+				]]>
+            </html>
+        </default_footer>
+        <discussion_mode>html</discussion_mode>
+    </production>
+    
+    <development extends="production"></development>
+
+</config>

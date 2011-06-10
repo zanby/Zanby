@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+
+    <production>
+        <main>
+            <enabled>false</enabled> <!-- enable/disable memcache support (values yes/false)-->
+        </main>
+        <servers> <!-- enumeration of memcache servers -->
+            <connection name='pr_1'> <!-- settings for connection -->
+                <backend> <!-- backend settings -->
+                    <server> <!-- Server backend settings-->
+                        <host>_HOST_NAME_</host> <!-- host -->
+                        <port>_PORT_</port>
+                        <persistent>true</persistent> <!-- keep persistent connection-->
+                    </server>
+                    <compression>true</compression> <!-- compress data -->
+                </backend>
+                <frontend> <!-- frontend options-->
+                    <lifetime>300</lifetime>  <!-- timeout befor closing connection -->
+                    <automatic_serialization>true</automatic_serialization>
+                </frontend>
+                <range>
+                    <point>32768</point> <!-- end of cache range  -->
+                    <point>78768</point> <!-- end of cache range  -->
+                </range>
+            </connection>
+        </servers>
+    </production>
+
+    <development extends="production"></development>
+
+</config>

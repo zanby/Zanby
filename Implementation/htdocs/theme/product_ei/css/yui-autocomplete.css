@@ -1,0 +1,4 @@
+@import url(/theme/product/css/yui-autocomplete.css);
+.yui-skin-sam .yui-ac-content li.yui-ac-highlight {
+	background: #0E4D91;
+}
