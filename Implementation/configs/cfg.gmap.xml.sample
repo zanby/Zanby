@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding='utf-8'?>
+<config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+    <production>
+        <google_map_key>_YOUR_GMAP_KEY_</google_map_key>
+        <zanbyserv_google_map_key>_YOUR_GMAP_KEY_</zanbyserv_google_map_key>
+        <google_address_error>Google Maps could not understand your entry. Your info will not appear on the map unless you correct the street and zip code combination.</google_address_error>
+        <map_marker_ttl>10</map_marker_ttl><!--Cache life time for marker array on the server in minutes-->
+        <address_lookup_result_ttl>2592000</address_lookup_result_ttl><!--How often we should recheck coordinates by address in seconds - 30 days (30*24*60*60 = 2592000 ) by default-->
+        <address_lookup_acuracy_level>6</address_lookup_acuracy_level><!-- visit http://code.google.com/intl/ru-RU/apis/maps/documentation/geocoding/#GeocodingAccuracy to learn more about acuracy -->
+        <map_clustering_zoom_level>6</map_clustering_zoom_level> <!-- if 0 - disabled. possible values: 1 - 16 -->
+
+        <default_center>
+            <lat></lat>
+            <lng></lng>
+            <zoom></zoom>
+        </default_center>
+		
+    </production>
+	
+    <development extends="production"></development>
+
+</config>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding='utf-8'?>
+<config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+    <production>
+        <!--
+        MAIN CONFIGURATION
+        http_context        - Site context e.g. zanby, theuptake. Should be same as project directory name. DB update should be applied after changing.
+        site_encoding       - default encoding for site
+        time_zone           - default timezone name for site in unix format
+        use_port_in_URL     - allow use port in url to access to site
+        https               - allow or deny access wia https security protocol. Possible values : on, off
+        -->
+        <http_context>zanby-product</http_context>
+        <site_encoding>UTF-8</site_encoding>
+        <time_zone>Europe/Minsk</time_zone>
+        <use_port_in_URL>0</use_port_in_URL>
+        <https>off</https>
+
+        <!--
+        IMPLEMENTATION CONFIGURATION
+        impl_type               - ESA | EIA
+        impl_version            - 3|2a|2b
+        impl_family_group_UID   - UID of main famaly for implementations 2a-b
+        impl_group_UID          - main group in family for join users
+        impl_use_theme          - theme used for project
+        impl_use_sso            - it on implementation will use sso filter (on|off)
+        -->
+        <impl_type>ESA</impl_type>
+        <impl_version>3</impl_version>
+        <impl_family_group_UID></impl_family_group_UID>
+        <impl_group_UID></impl_group_UID>
+        <impl_use_theme>product</impl_use_theme>
+        <impl_use_sso>off</impl_use_sso>
+
+        <!--
+        SITE NAMES CONFIGURATION
+        name - Used for displaying in design of site
+        -->
+        <name>_SITE_NAME_</name>
+        <site_name_as_string>_SITE_NAME_AS_STRING_</site_name_as_string>
+        <site_name_as_domain>_SITE_NAME_AS_STRING_</site_name_as_domain>
+        <site_name_as_full_domain>_SITE_NAME_AS_FULL_DOMAIN_</site_name_as_full_domain>
+
+        <!--
+        SESSION HANDLERS
+        session_save_handler - handler for session
+        session_save_path
+        should present if memcache used only
+        -->
+        <!--
+        <session_save_handler>memcache</session_save_handler>
+        <session_save_path>tcp://localhost:11211</session_save_path>
+        -->
+
+        <!--
+        CSS & JS VERSIONS CONFIGURATION
+        -->
+        <css_version>4.1.049</css_version>
+        <js_version>4.1.049</js_version>
+
+
+        <!--
+        SEARCH CONFIGURATION
+        with_sphinx - use Spinx in search or not. Possible values : on, off
+        distance_of_search - Distance of search by zipcodes or city, default 500
+        with_sphinx_tags - must be set to on
+        -->
+        <with_sphinx>off</with_sphinx>
+        <with_sphinx_tags>off</with_sphinx_tags>
+        <distance_of_search>500</distance_of_search>
+
+        <!--
+        VIDEO CONFIGURATION
+        s3_bucket - folder on S3 for video storing ( zanby.buick - for all local store, different bucket for each database )
+        store_original_video - store original video or not, 1 - store, 0 - don't store
+        use_video_suspended_processing - use processing page ( after upload videos user will see page with upload process )
+        single_video_mode - allow or deny mode without video galleries. 0 - deny, 1 - allow
+        videos_size_limit - max size of images storage
+        -->
+        <s3_bucket>_S3_BUCKET_</s3_bucket>
+        <store_original_video>0</store_original_video>
+        <use_video_suspended_processing>1</use_video_suspended_processing>
+        <single_video_mode>1</single_video_mode>
+        <!--videos_size_limit>20971520</videos_size_limit--> <!-- 20Mb -->
+
+        <!--
+        PHOTO CONFIGURATION
+        images_size_limit - max size of images storage
+        -->
+        <images_size_limit>6291456</images_size_limit>
+
+        <!--
+        DOCUMENTS CONFIGURATION
+        documents_size_limit - max documents of images storage
+        -->
+        <documents_size_limit>6291456</documents_size_limit>
+
+        <!--
+        POOL CONFIGURATION
+        -->
+        <poll_vote_timeout_in_day>30</poll_vote_timeout_in_day>
+
+
+        <!--
+        Sorting of family groups on family landing page.
+        Possible:
+        groupsInFamily - sort by amount of groups in family
+        name - sort by family name
+        -->
+        <familyLandingSort>groupsInFamily</familyLandingSort>
+
+        <!--
+        use_event_tz_from_venue - This option used for set Event TimeZone as it was
+        set when Event was created. TZ will be not converted
+        for any User.
+        Values: 1 - TZ will be not converted and use permanently,
+        0 - TZ will be converted and use converted for any User
+        NOTE (Artem Sulharev): zanby-product venue hasn't timezone in this case set up this value to 0, it used for CPP only
+        -->
+        <use_event_tz_from_venue>0</use_event_tz_from_venue> <!-- 0 or 1 -->
+    </production>
+
+    <development extends="production"></development>
+    
+</config>

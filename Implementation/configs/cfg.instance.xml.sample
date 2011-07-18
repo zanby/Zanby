@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+    <production>
+	<!-- This should not go into Zanby! -->
+        <!--
+        SITE URLs CONFIGURATION
+        base_http_host          - base host for site without http://. e.g. zanby.com
+        domain_for_email        - domain for all emails that used on site from project side (administrators, feedback, support)
+        domain_for_group_email  - domain for project groups emails. e.g. if we have group 'group1' - it will be group1@{domain_for_group_email}
+        serve_url               - domain for call js scripts from content objects
+        -->
+        <base_http_host>_BASE_HTTP_HOST_</base_http_host>
+        <domain_for_email>_DOMAIN_FOR_EMAIL_</domain_for_email>
+        <domain_for_group_email>_DOMAIN_FOR_GROUP_EMAIL_</domain_for_group_email>
+        <serve_url>_SERVE_URL_</serve_url>
+
+        <!--
+        SITE EMAILs CONFIGURATION
+        admin_email - email of adminidtrator
+        -->
+        <admin_email>_ADMIN_EMAIL_</admin_email>
+
+        <!--
+        SMTP CONFIGURATION
+        smtp_method - method of email sending. can be smtp and mail. Type 'mail' is default
+        smtp - used smtp server to send emails
+        mail - use php mail function
+        logEmails - if 'on' all emails will be saved to log files. Possible values - on|off
+        [for method type 'smtp']
+        smtp_host - ip or name of smtp server
+        smtp_port - port of smtp server
+        smtp_timeout - smtp connetction timeout (sec)
+        socket_set_timeout - timeout to open socket to smtp server (sec)
+        use_mail_queue - use or not queue for wmilas. Possible values - 0(don't use)|1(use)
+        -->
+        <smtp_method>_SMTP_METHOD_(smtp|mail)_</smtp_method>
+        <smtp_host>_SMTP_HOST_</smtp_host>
+        <smtp_port>_SMTP_HOST_</smtp_port>
+        <smtp_timeout>_SMTP_HOST_</smtp_timeout>
+        <socket_set_timeout>_SOCKET_SET_TIMEOUT_</socket_set_timeout>
+        <logEmails>off</logEmails>
+        <use_mail_queue>1</use_mail_queue>
+
+        <!--
+        BILLING CONFIGURATION
+        billing_email - email to send billing reports
+        billing_grace_period
+        -->
+        <billing_email>_BILLING_EMAIL_</billing_email>
+        <billing_grace_period>30</billing_grace_period>
+
+        <!--
+        DEBUG MODE CONFIGURATION
+        debug_mode - on or off debug mode. on|silent
+        on - display debug information on page
+        silent - don't display debug information on page, write it to log file
+        debug_silent_mode_type - [for debug_mode=silent] values : both, global, session
+        global - save log info in one file
+        session - save log info for current users session only
+        both - save to global file and for current users session
+        debug_long_queries - save log info for long queries. Values : on, off
+        debug_long_queries_mode - [for debug_long_queries=on] values : both, global, session
+        global - save log info in one file
+        session - save log info for current users session only
+        both - save to global file and for current users session
+        debug_catch_queries_longer - time in sec. if query runs more that this time this query will be saved to log file
+
+        Note : Log information will be stored in files :
+        DEBUG_LOG_DIR.'global.xml'
+        DEBUG_LOG_DIR.'session/'.session_id().'.xml'
+        DEBUG_LOG_DIR.'long_queries_global.xml'
+        DEBUG_LOG_DIR.'session/long_queries_'.session_id().'.xml'
+        debug_force_compile -This forces templates to compile every time. values : on, off
+        -->
+        <debug_mode>off</debug_mode>
+        <debug_silent_mode_type>both</debug_silent_mode_type>
+        <debug_long_queries>off</debug_long_queries>
+        <debug_long_queries_mode>global</debug_long_queries_mode>
+        <debug_catch_queries_longer>0.5</debug_catch_queries_longer>
+        <debug_force_compile>off</debug_force_compile>
+
+        <!-- MODE: on|off; option have no sense if <debug_mode> set OFF -->
+        <!-- FILE: Filename for log pages measurement in CSV format, can set relative path from APPLICATION_PATH or absolute path -->
+        <measurement>
+            <mode>off</mode>
+            <file>var/measurement/measurement.csv</file>
+        </measurement>
+
+        <!--
+        OTHER CONFIGURATION
+        registration_captcha - use captcha in registration or not. Possible values : on, off
+        direct_activation - if on user will accepted directly after registration. Possible values : on, off
+        use_new_restore_password - Use url that sent to email for restore password
+        who_approve_user_account - leave it blank if user should recieve confirmation letter or enter login of administrator
+        -->
+        <registration_captcha>on</registration_captcha>
+        <direct_activation>off</direct_activation>
+        <use_new_restore_password>on</use_new_restore_password>
+        <who_approve_user_account></who_approve_user_account>
+
+        <!--
+        ERROR REPORTING CONFIGURATION
+        0 - off; 1 - on
+        ERRORS_DISPLAY_MODE - Display error on web site. All errors will be displayed on error page.
+        ERRORS_LOG_MODE - Write error to logfile or not.
+        ERRORS_EMAIL_SEND_MODE - Send errors to email
+        ERRORS_EMAIL_SEND_TO - email(s), delimiter - ;
+        -->
+        <ERRORS_DISPLAY_MODE>0</ERRORS_DISPLAY_MODE>
+        <ERRORS_LOG_MODE>0</ERRORS_LOG_MODE>
+        <ERRORS_EMAIL_SEND_MODE>0</ERRORS_EMAIL_SEND_MODE>
+        <ERRORS_EMAIL_SEND_TO>_ERRORS_EMAIL_SEND_TO_</ERRORS_EMAIL_SEND_TO>
+
+        <!-- Google map key -->
+        <google_map_key>_YOUR_GMAP_KEY_</google_map_key>
+        <zanbyserv_google_map_key>_YOUR_GMAP_KEY_</zanbyserv_google_map_key>
+
+        <!--   
+        mode - bbcode,html
+        -->
+        <discussion>
+            <mode>html</mode>
+        </discussion>
+        
+        <!-- From cfg.indexer.xml  -->
+        <search>
+            <host>_SEARCH_ENGINE_HOST_</host>
+            <port>_SEARCH_ENGINE_PORT_</port>
+            <limit>_SEARCH_ENGINE_LIMIT_</limit>
+        </search>
+
+        <!-- from cfg.mailsrv.service.xml -->
+        <mailsrv>
+            <use>false</use>
+            <!-- Server URL -->
+            <url>_MAILSRV_URL_</url>
+            <!-- Url to WSDL file -->
+            <wsdl>_MAILSRV_WSDL_URL_</wsdl>
+            <!-- Wait before throw Timeout exception -->
+            <timeout>60</timeout>
+        </mailsrv>
+
+        <!-- from cfg.tinyservice.xml -->
+        <tinyservice>
+            <!-- Url to WSDL file -->
+            <wsdl>_TINYSERVICE_WSDL_URL_</wsdl>
+            <!-- Wait before throw Timeout exception -->
+            <timeout>5</timeout>
+        </tinyservice>
+        
+        <!-- Wordpress SSO Settings -->
+        <wp_sso>
+            <wp_sso_enabled>false</wp_sso_enabled>
+            <wp_sso_url>_WP_SSO_URL_</wp_sso_url>
+        </wp_sso>
+
+        <default_locale>en_US</default_locale>
+    </production>
+
+    <development extends="production">
+        <ERRORS_DISPLAY_MODE>1</ERRORS_DISPLAY_MODE>
+    </development>
+    
+</config>

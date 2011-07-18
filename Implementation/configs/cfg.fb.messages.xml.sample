@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+    <production>
+        <STREAM_ACTION_MESSAGE_DEFAULT> just created new content on {*orgname*}</STREAM_ACTION_MESSAGE_DEFAULT>
+        <STREAM_ACTION_MESSAGE_NEW_EVENT> just created an Event "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_NEW_EVENT>
+        <STREAM_ACTION_MESSAGE_NEW_LIST> just created a List "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_NEW_LIST>
+        <STREAM_ACTION_MESSAGE_NEW_PHOTO> just created a Photo "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_NEW_PHOTO>
+        <STREAM_ACTION_MESSAGE_NEW_VIDEO> just created a Video "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_NEW_VIDEO>
+        <STREAM_ACTION_MESSAGE_COMMENTED_PHOTO> just commented on Photo "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_COMMENTED_PHOTO>
+        <STREAM_ACTION_MESSAGE_COMMENTED_LIST> just commented on List "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_COMMENTED_LIST>
+        <STREAM_ACTION_MESSAGE_RSVP_EVENT> rsvp'd to Event "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_RSVP_EVENT>        
+        <STREAM_ACTION_MESSAGE_NEW_GROUP> just created new Group "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_NEW_GROUP>
+        <STREAM_ACTION_MESSAGE_JOIN_GROUP> just joined to group "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_JOIN_GROUP>
+        <STREAM_ACTION_MESSAGE_NEW_HOST> just became as host of "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_NEW_HOST>
+        <STREAM_ACTION_MESSAGE_CHANGED_EVENT> just update Event "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_CHANGED_EVENT>
+        <STREAM_ACTION_MESSAGE_CHANGED_LIST> just update List "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_CHANGED_LIST>
+        <STREAM_ACTION_MESSAGE_CHANGED_PHOTO> just updated a Photo "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_CHANGED_PHOTO>
+        <STREAM_ACTION_MESSAGE_CHANGED_VIDEO> just updated a Video "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_CHANGED_VIDEO>
+        <STREAM_ACTION_MESSAGE_COMMENTED_VIDEO> just commented on Video "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_COMMENTED_VIDEO>
+        <STREAM_ACTION_MESSAGE_NEW_DOCUMENT> just created a Document "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_NEW_DOCUMENT>
+        <STREAM_ACTION_MESSAGE_UPDATE_PROFILE> just updated Profile on {*orgname*}</STREAM_ACTION_MESSAGE_UPDATE_PROFILE>
+        <STREAM_ACTION_MESSAGE_UPDATE_GROUP> just updated a Group "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_UPDATE_GROUP>
+        <STREAM_ACTION_MESSAGE_NEW_DISCUSSION> just created a Discussion Topic "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_NEW_DISCUSSION>
+        <STREAM_ACTION_MESSAGE_NEW_FRIEND> just added new friend "{*title*}" on {*orgname*}</STREAM_ACTION_MESSAGE_NEW_FRIEND>	
+    </production>
+
+    <development extends="production"></development>
+
+</config>
